@@ -18,11 +18,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         stage.initStyle(StageStyle.UNDECORATED);
-<<<<<<< HEAD
-        stage.setResizable(false);
-=======
         stage.setTitle("TávOktatás");
->>>>>>> Bejelentkező felület
         stage.setScene(scene);
         stage.show();
     }
