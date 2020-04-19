@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.modell.Simulation;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -82,7 +83,12 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downLoadButtenPushed() {
-
+        System.out.println("You clicked me!");
+        
+        //Save test data
+        Simulation simulation = new Simulation();
+        
+        System.out.println("Done!");
     }
 
     @FXML
