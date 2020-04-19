@@ -5,8 +5,6 @@
  */
 package hu.unideb.inf.util;
 
-import hu.unideb.inf.entity.Course;
-import hu.unideb.inf.entity.User;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,13 +13,14 @@ import org.hibernate.query.Query;
 /**
  *
  * @author pixel
+ * @param <T>
  */
-public class JpaUserDAO implements UserDAO{
+public class JpaEduDAO<T> implements EduDAO<T>{
     
     Session session;
     Transaction transaction;
 
-    public JpaUserDAO() {
+    public JpaEduDAO() {
         session = HibernateUtil.getSessionFactory().openSession();
         System.out.println("DAO session opened...");
     }
@@ -33,10 +32,10 @@ public class JpaUserDAO implements UserDAO{
     }
     
     @Override
-    public void save(User u) {
+    public void save(T obj){
         try{
             transaction = session.beginTransaction();
-            session.save(u);
+            session.save(obj);
             transaction.commit();
         }catch(Exception e){
             if(transaction != null){
@@ -46,10 +45,10 @@ public class JpaUserDAO implements UserDAO{
     }
 
     @Override
-    public void delete(User u) {
+    public void delete(T obj) {
         try{
             transaction = session.beginTransaction();
-            session.remove(u);
+            session.remove(obj);
             transaction.commit();
         }catch(Exception e){
             if(transaction != null){
@@ -59,10 +58,10 @@ public class JpaUserDAO implements UserDAO{
     }
 
     @Override
-    public void update(User u) {
+    public void update(T obj) {
         try{
             transaction = session.beginTransaction();
-            session.update(u);
+            session.update(obj);
             transaction.commit();
         }catch(Exception e){
             if(transaction != null){
@@ -72,54 +71,8 @@ public class JpaUserDAO implements UserDAO{
     }
 
     @Override
-    public List<User> getUsers() {
+    public List<T> getData() {
         String hql = "FROM hu.unideb.inf.entity.User";
-        Query query = session.createQuery(hql);
-        return query.list();
-    }
-    
-        @Override
-    public void save(Course c) {
-        try{
-            transaction = session.beginTransaction();
-            session.save(c);
-            transaction.commit();
-        }catch(Exception e){
-            if(transaction != null){
-                transaction.rollback();
-            }
-        }
-    }
-
-    @Override
-    public void delete(Course c) {
-        try{
-            transaction = session.beginTransaction();
-            session.remove(c);
-            transaction.commit();
-        }catch(Exception e){
-            if(transaction != null){
-                transaction.rollback();
-            }
-        }
-    }
-
-    @Override
-    public void update(Course c) {
-        try{
-            transaction = session.beginTransaction();
-            session.update(c);
-            transaction.commit();
-        }catch(Exception e){
-            if(transaction != null){
-                transaction.rollback();
-            }
-        }
-    }
-
-    @Override
-    public List<Course> getCourses() {
-        String hql = "FROM hu.unideb.inf.entity.Course";
         Query query = session.createQuery(hql);
         return query.list();
     }
