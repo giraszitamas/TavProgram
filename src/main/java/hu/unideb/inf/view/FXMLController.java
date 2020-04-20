@@ -31,6 +31,9 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Button downLoad;
+    
+    @FXML
+    private Button bezarFel;
 
     @FXML
     private TextField upSearch;
@@ -46,6 +49,9 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Button upLoad;
+    
+    @FXML
+    private Button bezarLe;
 
     @FXML
     private TextField felhasz;
@@ -93,6 +99,14 @@ public class FXMLController implements Initializable {
 
     @FXML
     void kilep() {
+        System.exit(0);
+    }
+    @FXML
+    void kilepUp() {
+        System.exit(0);
+    }
+    @FXML
+    void kilepDown() {
         System.exit(0);
     }
 
