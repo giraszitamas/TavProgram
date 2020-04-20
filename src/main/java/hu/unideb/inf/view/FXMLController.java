@@ -86,7 +86,7 @@ public class FXMLController implements Initializable {
         System.out.println("You clicked me!");
         
         //Save test data
-        Simulation simulation = new Simulation();
+        Simulation simulation = Simulation.getInstance();
         
         System.out.println("Done!");
     }
