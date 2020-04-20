@@ -1,10 +1,15 @@
 package hu.unideb.inf.view;
 
 import hu.unideb.inf.modell.Simulation;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.PasswordField;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -12,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class FXMLController implements Initializable {
 
@@ -19,6 +26,11 @@ public class FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    @FXML
+    private TextField loginUsername;
+
+    @FXML
+    private PasswordField loginPassword;
 
     @FXML
     private TextField downSearch;
@@ -52,39 +64,20 @@ public class FXMLController implements Initializable {
     
     @FXML
     private Button upClose;
+    
+    @FXML
+    void loginExitButtonPushed() {
+        System.exit(0);
+    }
 
     @FXML
-    private TextField user;
-
-    @FXML
-    private TextField psw;
-
-    @FXML
-    private Button logIn;
-
-    @FXML
-    private Label logText;
-
-    @FXML
-    private Button close;
-
-    @FXML
-    private TabPane rejtett;
-
-    @FXML
-    private Pane lap;
-
-    Boolean igaz = false;
-
-    @FXML
-    void belep() {
-        String flh = user.getText();
-        String jlsz = psw.getText();
-        logText.setText("Log: " + user.getText() + " " + psw.getText());
+    void loginLoginButtonPushed() {
+        String flh = loginUsername.getText();
+        String jlsz = loginPassword.getText();
         if (flh.equals("megfelelo") && jlsz.equals("ez is")) {
-            rejtett.setStyle("visibility: visible;");
-            lap.setStyle("visibility: hidden;");
+            windowLoader("/fxml/Scene.fxml", "Felulet");
         }
+
     }
 
     @FXML
@@ -112,7 +105,19 @@ public class FXMLController implements Initializable {
 
     @FXML
     void upLoadButtonPushed() {
+        
+    }
+     void windowLoader(String location, String title){
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource(location));
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle(title);
+            stage.setScene(new Scene(parent));
+            stage.show();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
