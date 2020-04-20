@@ -6,7 +6,7 @@
 
     <groupId>hu.unideb.inf</groupId>
     <artifactId>SzofDev_JavaFx11</artifactId>
-    <version>0.2-SHOW</version>
+    <version>0.2.0.1-SHOW</version>
     <packaging>jar</packaging>
 
     <name>SzofDev_JavaFx11</name>
