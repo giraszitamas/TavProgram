@@ -33,7 +33,7 @@ public class FXMLController implements Initializable {
     private Button downLoad;
     
     @FXML
-    private Button bezarLe;
+    private Button downClose;
 
     @FXML
     private TextField upSearch;
@@ -51,22 +51,22 @@ public class FXMLController implements Initializable {
     private Button upLoad;
     
     @FXML
-    private Button bezarFel;
+    private Button upClose;
 
     @FXML
-    private TextField felhasz;
+    private TextField user;
 
     @FXML
-    private TextField jelszo;
+    private TextField psw;
 
     @FXML
-    private Button belepes;
+    private Button logIn;
 
     @FXML
-    private Label szoveg;
+    private Label logText;
 
     @FXML
-    private Button bezar;
+    private Button close;
 
     @FXML
     private TabPane rejtett;
@@ -78,9 +78,9 @@ public class FXMLController implements Initializable {
 
     @FXML
     void belep() {
-        String flh = felhasz.getText();
-        String jlsz = jelszo.getText();
-        szoveg.setText("Log: " + felhasz.getText() + " " + jelszo.getText());
+        String flh = user.getText();
+        String jlsz = psw.getText();
+        logText.setText("Log: " + user.getText() + " " + psw.getText());
         if (flh.equals("megfelelo") && jlsz.equals("ez is")) {
             rejtett.setStyle("visibility: visible;");
             lap.setStyle("visibility: hidden;");
@@ -98,15 +98,15 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void kilep() {
+    void exit() {
         System.exit(0);
     }
     @FXML
-    void kilepUp() {
+    void upExit() {
         System.exit(0);
     }
     @FXML
-    void kilepDown() {
+    void downExit() {
         System.exit(0);
     }
 
