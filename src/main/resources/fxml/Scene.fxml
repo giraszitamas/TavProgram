@@ -27,7 +27,7 @@
                         <TextArea fx:id="downLink" layoutX="321.0" layoutY="127.0" prefHeight="200.0" prefWidth="200.0" />
                         <Text layoutX="321.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letölttési link" />
                         <Button fx:id="downLoad" layoutX="511.0" layoutY="57.0" mnemonicParsing="false" onAction="#downLoadButtenPushed" text="Load" />
-                        <Button fx:id="bezarFel" layoutX="564.0" layoutY="699.0" mnemonicParsing="false" onAction="#kilepDown" text="Kilépés" />
+                        <Button fx:id="bezarLe" layoutX="564.0" layoutY="699.0" mnemonicParsing="false" onAction="#kilepDown" text="Kilépés" />
                      </children>
                   </AnchorPane>
             </content>
@@ -45,7 +45,7 @@
                         <TextField fx:id="upName" layoutX="339.0" layoutY="138.0" />
                         <Text layoutX="339.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nevezze el" />
                         <Button fx:id="upLoad" layoutX="516.0" layoutY="63.0" mnemonicParsing="false" onAction="#upLoadButtonPushed" text="Load" />
-                        <Button fx:id="bezarLe" layoutX="564.0" layoutY="699.0" mnemonicParsing="false" onAction="#kilepUp" text="Kilépés" />
+                        <Button fx:id="bezarFel" layoutX="564.0" layoutY="699.0" mnemonicParsing="false" onAction="#kilepUp" text="Kilépés" />
                      </children>
                   </AnchorPane>
             </content>
