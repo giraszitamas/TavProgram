@@ -20,6 +20,15 @@ public class Simulation {
     private User student1, student2, teacher1;
     private Course subject;
 
+    private static Simulation instance = null;
+    
+    public static synchronized Simulation getInstance() {
+        if (instance == null) {
+            instance = new Simulation();
+        }
+        return instance;
+    }
+    
     public User getStudent1() {
         return student1;
     }
@@ -36,7 +45,7 @@ public class Simulation {
         return subject;
     }
     
-    public Simulation() {
+    private Simulation() {  //privát láthatóságú konstruktor!
         student1 = new User(User.userType.STUDENT, "Nem2", "Vicc", LocalDate.parse("1999-04-04"), "jonnyyespapa@malbox.unideb.hu");
         student2 = new User(User.userType.STUDENT, "Elek", "Teszt", LocalDate.parse("1998-12-03"), "szamonkerlek@malbox.unideb.hu", "AlmaRetep248");
         teacher1 = new User(User.userType.TEACHER, "Péter", "Alma", LocalDate.parse("1981-07-06"), "ezalma@malbox.unideb.hu");
@@ -49,11 +58,6 @@ public class Simulation {
         student2.addCourse(subject);
         teacher1.addCourse(subject);
         
-        System.out.println(teacher1.toString());
-        System.out.println(student1.toString());
-        System.out.println(student2.toString());
-        System.out.println(subject.toString());
-        
         try (EduDAO uDAO = new JpaEduDAO<User>()) {
             uDAO.save(student1);
             uDAO.save(student2);
@@ -62,14 +66,9 @@ public class Simulation {
         }
         
         subject.setResponsible(teacher1);
-        System.out.println(teacher1.toString());
-        System.out.println(student1.toString());
-        System.out.println(student2.toString());
-        System.out.println(subject.toString());
         
         try (EduDAO uDAO = new JpaEduDAO<Course>()) {
             uDAO.update(subject);
         }
     }
-    
 }
