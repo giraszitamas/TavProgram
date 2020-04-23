@@ -18,6 +18,4 @@ public interface UserDAO extends AutoCloseable {
     @Override
     default public void close() {
     }
-    
-    //I will just add this comment, becasue the git don't want tu update this file.'
 }
