@@ -46,9 +46,9 @@ public class Simulation {
     }
     
     private Simulation() {  //privát láthatóságú konstruktor!
-        student1 = new User(User.userType.STUDENT, "Nem2", "Vicc", LocalDate.parse("1999-04-04"), "jonnyyespapa@malbox.unideb.hu");
-        student2 = new User(User.userType.STUDENT, "Elek", "Teszt", LocalDate.parse("1998-12-03"), "szamonkerlek@malbox.unideb.hu", "AlmaRetep248");
-        teacher1 = new User(User.userType.TEACHER, "Péter", "Alma", LocalDate.parse("1981-07-06"), "ezalma@malbox.unideb.hu");
+        student1 = new User(User.userType.STUDENT, "ElekVokOztCso", "János", "Kocsis", LocalDate.parse("1999-04-04"), "jonnyyespapa@malbox.unideb.hu", "jelszó123");
+        student2 = new User(User.userType.STUDENT, "Tesztellek", "Elek", "Teszt", LocalDate.parse("1998-12-03"), "szamonkerlek@malbox.unideb.hu", "TESZT123");
+        teacher1 = new User(User.userType.TEACHER, "EzAlma", "Péter", "Alma", LocalDate.parse("1981-07-06"), "ezalma@malbox.unideb.hu", "jelszó123");
         subject = new Course("SzoftDev");
         
 //        subject.addUser(student1);

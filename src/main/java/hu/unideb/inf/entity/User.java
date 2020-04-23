@@ -38,6 +38,9 @@ public class User implements Serializable {
     @Column(unique = false, name = "user_type")
     private userType type;
     
+    @Column(unique = true, name = "username")
+    private String username;
+    
     @Column(unique = false, name = "first_name")
     private String FirstName;
     
@@ -66,18 +69,22 @@ public class User implements Serializable {
         this.code = null;
     }
     
+    //  !!!!
     //Use this only, if we force the user to add password a step later!!!
-    public User(userType type, String FirstName, String LastName, LocalDate birthDate, String email) {
+    public User(userType type, String username, String FirstName, String LastName, LocalDate birthDate, String email) {
         this.type = type;
+        this.username = username;
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.birthDate = birthDate;
         this.email = email;
         this.code = null;
     }
+    //  !!!!
     
-    public User(userType type, String FirstName, String LastName, LocalDate birthDate, String email, String code) {
+    public User(userType type, String username, String FirstName, String LastName, LocalDate birthDate, String email, String code) {
         this.type = type;
+        this.username = username;
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.birthDate = birthDate;
@@ -103,6 +110,14 @@ public class User implements Serializable {
 
     public void setType(userType type) {
         this.type = type;
+    }
+    
+     public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
     
     public String getFirstName() {

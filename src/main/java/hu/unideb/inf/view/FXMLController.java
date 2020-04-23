@@ -44,7 +44,8 @@ public class FXMLController implements Initializable {
         }
     }
     //LOGIN END
-   
+    
+    //BUG: The windows are still open, and there are more nad more of them. :O
     //WELCOME START
     @FXML
     void welcomeDownloadButtonPushed() {
