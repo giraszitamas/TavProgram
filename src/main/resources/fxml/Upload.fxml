@@ -43,7 +43,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button layoutX="586.0" layoutY="492.0" mnemonicParsing="false" onAction="#uploadBackButtonPushed" prefHeight="44.0" prefWidth="130.0" text="Vissza" />
+      <Button fx:id="uploadBackButton" layoutX="586.0" layoutY="492.0" mnemonicParsing="false" onAction="#uploadBackButtonPushed" prefHeight="44.0" prefWidth="130.0" text="Vissza" />
       <Text layoutX="604.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nevezze el">
          <font>
             <Font size="20.0" />

@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -34,6 +35,9 @@ public class FXMLController implements Initializable {
     private PasswordField loginPassword;
     
     @FXML
+    private Button loginLoginButton;
+    
+    @FXML
     void loginExitButtonPushed() {
         System.exit(0);
     }
@@ -46,6 +50,8 @@ public class FXMLController implements Initializable {
             User user = uDAO.findByName(username);
             if(user != null && password.equals(user.getCode())){
                 windowLoader("/fxml/Welcome.fxml", "Welcome");
+                Stage stage = (Stage) loginLoginButton.getScene().getWindow();
+                stage.close();
             }else{
                 System.out.println("User not found or wrong password!");
             }
@@ -55,9 +61,15 @@ public class FXMLController implements Initializable {
     
     //BUG: The windows are still open, and there are more nad more of them. :O
     //WELCOME START
+    
+    @FXML
+    private Button welcomeDownloadButton;
+    
     @FXML
     void welcomeDownloadButtonPushed() {
         windowLoader("/fxml/Download.fxml", "Download");
+        Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -68,6 +80,8 @@ public class FXMLController implements Initializable {
     @FXML
     void welcomeUploadButtonPushed() {
         windowLoader("/fxml/Upload.fxml", "Upload");
+        Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
+        stage.close();
     }
     //WELCOME END
     
@@ -86,10 +100,15 @@ public class FXMLController implements Initializable {
 
     @FXML
     private TextArea downloadLink;
+    
+    @FXML
+    private Button downloadBackButton;
 
     @FXML
     void downloadBackButtonPushed() {
         windowLoader("/fxml/Welcome.fxml","Welcome");
+        Stage stage = (Stage) downloadBackButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -140,10 +159,15 @@ public class FXMLController implements Initializable {
 
     @FXML
     private TextField uploadFileName;
+    
+    @FXML
+    private Button uploadBackButton;
 
     @FXML
     void uploadBackButtonPushed() {
         windowLoader("/fxml/Welcome.fxml","Welcome");
+        Stage stage = (Stage) uploadBackButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

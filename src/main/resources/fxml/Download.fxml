@@ -43,7 +43,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button layoutX="586.0" layoutY="492.0" mnemonicParsing="false" onAction="#downloadBackButtonPushed" prefHeight="44.0" prefWidth="130.0" text="Vissza" />
+      <Button fx:id="downloadBackButton" layoutX="586.0" layoutY="492.0" mnemonicParsing="false" onAction="#downloadBackButtonPushed" prefHeight="44.0" prefWidth="130.0" text="Vissza" />
       <Text layoutX="329.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltés">
          <font>
             <Font size="41.0" />

@@ -19,7 +19,7 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <Button layoutX="226.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeDownloadButtonPushed">
+      <Button fx:id="welcomeDownloadButton" layoutX="226.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeDownloadButtonPushed">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
