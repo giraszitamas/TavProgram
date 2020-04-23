@@ -1,6 +1,9 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.entity.User;
 import hu.unideb.inf.modell.Simulation;
+import hu.unideb.inf.util.JpaUserDAO;
+import hu.unideb.inf.util.UserDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,10 +40,15 @@ public class FXMLController implements Initializable {
 
     @FXML
     void loginLoginButtonPushed() {
-        String flh = loginUsername.getText();
-        String jlsz = loginPassword.getText();
-        if (flh.equals("megfelelo") && jlsz.equals("ez is")) {
-            windowLoader("/fxml/Welcome.fxml", "Welcome");
+        String username = loginUsername.getText();
+        String password = loginPassword.getText();
+        try (UserDAO uDAO = new JpaUserDAO()) {
+            User user = uDAO.findByName(username);
+            if(user != null && password.equals(user.getCode())){
+                windowLoader("/fxml/Welcome.fxml", "Welcome");
+            }else{
+                System.out.println("User not found or wrong password!");
+            }
         }
     }
     //LOGIN END
@@ -100,7 +108,15 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadNoteOpenButtonPushed() {
-
+        //Testing for findByName
+        try (UserDAO uDAO = new JpaUserDAO()) {
+            User user = uDAO.findByName("Tesztellek");
+            if(user != null){
+                System.out.println(user.toString());
+            }else{
+                System.out.println("User not found!");
+            }
+        }
     }
     
     //DOWNLOAD END

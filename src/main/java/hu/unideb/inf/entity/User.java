@@ -170,7 +170,16 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", type=" + type + ", FirstName=" + FirstName + ", LastName=" + LastName + ", birthDate=" + birthDate + ", email=" + email + ", code=" + code + ", courses=" + courses + ']';
+        StringBuilder sb = new StringBuilder();
+        sb.append("User: id=").append(id).append(", ");
+        sb.append("username=").append(username).append(", ");
+        sb.append("type=").append(type).append(", ");
+        sb.append("FirstName=").append(FirstName).append(", ");
+        sb.append("LastName=").append(LastName).append(", ");
+        sb.append("birthDate=").append(birthDate).append(", ");
+        sb.append("email=").append(email).append(", ");
+        sb.append("code=").append(code).append(", ");
+        return sb.toString();
     }
     
     @Override
@@ -193,6 +202,9 @@ public class User implements Serializable {
         }
         final User other = (User) obj;
         if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         if (!Objects.equals(this.FirstName, other.FirstName)) {

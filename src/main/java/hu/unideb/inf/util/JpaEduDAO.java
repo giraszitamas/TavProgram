@@ -28,7 +28,7 @@ public class JpaEduDAO<T> implements EduDAO<T>{
     @Override
     public void close() {
         session.close();
-        System.out.println("DAO session closed...");        //During development.
+        System.out.println("Edu DAO session closed...");        //During development.
     }
     
     @Override
