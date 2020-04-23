@@ -22,13 +22,13 @@ public class JpaEduDAO<T> implements EduDAO<T>{
 
     public JpaEduDAO() {
         session = HibernateUtil.getSessionFactory().openSession();
-        System.out.println("DAO session opened...");
+        System.out.println("Edu DAO session opened...");    //During development.
     }
 
     @Override
     public void close() {
         session.close();
-        System.out.println("DAO session closed...");
+        System.out.println("DAO session closed...");        //During development.
     }
     
     @Override
