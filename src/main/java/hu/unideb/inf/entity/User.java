@@ -60,9 +60,13 @@ public class User implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id"))
     private Set<Course> courses = new HashSet<>();
     
+    //The code is set to null, we can catch Users without it.
+    //Are we need this?
     public User() {
+        this.code = null;
     }
     
+    //Use this only, if we force the user to add password a step later!!!
     public User(userType type, String FirstName, String LastName, LocalDate birthDate, String email) {
         this.type = type;
         this.FirstName = FirstName;
