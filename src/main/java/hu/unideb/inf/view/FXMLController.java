@@ -14,6 +14,8 @@ import javafx.scene.control.PasswordField;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -53,6 +55,10 @@ public class FXMLController implements Initializable {
             Stage stage = (Stage) loginLoginButton.getScene().getWindow();
             stage.close();
         }else{
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Incorrect credentials");
+            alert.setHeaderText("Incorrect username or password");
+            alert.showAndWait();
             System.out.println("User not found or wrong password!");
         }
     }
