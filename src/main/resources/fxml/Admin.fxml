@@ -77,7 +77,7 @@
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Ujra/Oktato/TavProgram/src/main/resources/icons/X.png" />
+                  <Image url="@../icons/X.png" />
                </image>
             </ImageView>
          </graphic>
