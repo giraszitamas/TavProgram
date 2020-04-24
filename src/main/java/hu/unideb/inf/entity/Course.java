@@ -37,7 +37,7 @@ public class Course implements Serializable {
     private String name;
     
     @Column(unique = false, name = "responsible_id")
-    private int responsibleId;
+    private long responsibleId;
     
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -61,11 +61,11 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public int getResponsible() {
+    public long getResponsible() {
         return responsibleId;
     }
 
-    public void setResponsible(int responsibleId) {
+    public void setResponsible(long responsibleId) {
         this.responsibleId = responsibleId;
     }
     

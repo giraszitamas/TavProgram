@@ -31,11 +31,21 @@ public class JpaUserDAO implements UserDAO{
     }
 
     @Override
-    public User findByName(String username) {
-        //GET and Filter the users and return it.
+    public User getByUsername(String username) {
+        //GET and Filter the users by username and return it.
         String hql = "SELECT user FROM hu.unideb.inf.entity.User user WHERE user.username=:uname";
         Query query = session.createQuery(hql);
         query.setParameter("uname", username);
+        User user = (User)query.uniqueResult();
+        return user;
+    }
+
+    @Override
+    public User getById(long id) {
+        //GET and Filter the users by id and return it.
+        String hql = "SELECT user FROM hu.unideb.inf.entity.User user WHERE user.id=:id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
         User user = (User)query.uniqueResult();
         return user;
     }

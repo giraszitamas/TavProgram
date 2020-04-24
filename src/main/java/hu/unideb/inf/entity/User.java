@@ -33,7 +33,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, name = "user_id")
-    private int id;
+    private long id;
     
     @Column(unique = false, name = "user_type")
     private userType type;
@@ -96,11 +96,11 @@ public class User implements Serializable {
         STUDENT, TEACHER, ADMIN
     }
     
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -164,7 +164,7 @@ public class User implements Serializable {
         courses.add(c);
     }
 
-    public Set<Course> getCourse() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
@@ -181,11 +181,11 @@ public class User implements Serializable {
         sb.append("code=").append(code).append(", ");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + this.id;
+        int hash = 7;
+        hash = 23 * hash + (int) (this.id ^ (this.id >>> 32));
         return hash;
     }
 

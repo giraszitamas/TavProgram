@@ -47,7 +47,7 @@ public class FXMLController implements Initializable {
         String username = loginUsername.getText();
         String password = loginPassword.getText();
         try (UserDAO uDAO = new JpaUserDAO()) {
-            User user = uDAO.findByName(username);
+            User user = uDAO.getByUsername(username);
             if(user != null && password.equals(user.getCode())){
                 windowLoader("/fxml/Welcome.fxml", "Welcome");
                 Stage stage = (Stage) loginLoginButton.getScene().getWindow();
@@ -127,7 +127,7 @@ public class FXMLController implements Initializable {
     void downloadNoteOpenButtonPushed() {
         //Testing for findByName
         try (UserDAO uDAO = new JpaUserDAO()) {
-            User user = uDAO.findByName("Tesztellek");
+            User user = uDAO.getByUsername("Tesztellek");
             if(user != null){
                 System.out.println(user.toString());
             }else{

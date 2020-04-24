@@ -13,7 +13,8 @@ import hu.unideb.inf.entity.User;
  */
 public interface UserDAO extends AutoCloseable {
     
-    public User findByName(String name);
+    public User getByUsername(String name);
+    public User getById(long id);
     
     @Override
     default public void close() {
