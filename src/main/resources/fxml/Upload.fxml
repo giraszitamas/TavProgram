@@ -21,22 +21,13 @@
             </ImageView>
          </graphic>
       </Button>
-      <Text layoutX="55.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válaszon egy tárgyat!">
+      <Text layoutX="155.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válaszon egy tárgyat!">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <ListView fx:id="uploadCourseList" layoutX="50.0" layoutY="120.0" prefHeight="373.0" prefWidth="200.0" />
-      <TextField fx:id="uploadCourseInput" layoutX="50.0" layoutY="514.0" prefHeight="25.0" prefWidth="200.0" />
-      <Text layoutX="294.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válasszon egy jegyzetet!">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <ListView fx:id="uploadNoteList" layoutX="301.0" layoutY="120.0" prefHeight="373.0" prefWidth="200.0" />
-      <TextField fx:id="uploadCouseInput" layoutX="301.0" layoutY="514.0" prefHeight="25.0" prefWidth="200.0" />
-      <Button layoutX="115.0" layoutY="550.0" mnemonicParsing="false" onAction="#uploadCourseOpenButtonPushed" text="Megnyitás" />
-      <Button layoutX="366.0" layoutY="550.0" mnemonicParsing="false" onAction="#uploadNoteOpenButtonPushed" text="Megnyitás" />
+      <ListView fx:id="uploadCourseList" layoutX="50.0" layoutY="120.0" prefHeight="373.0" prefWidth="451.0" />
+      <Button layoutX="240.0" layoutY="524.0" mnemonicParsing="false" onAction="#uploadCourseOpenButtonPushed" text="Megnyitás" />
       <TextArea fx:id="uploadLink" layoutX="551.0" layoutY="120.0" prefHeight="136.0" prefWidth="200.0" />
       <Text layoutX="596.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltési link">
          <font>
