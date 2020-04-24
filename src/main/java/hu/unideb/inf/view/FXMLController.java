@@ -1,6 +1,7 @@
 package hu.unideb.inf.view;
 
 import hu.unideb.inf.entity.User;
+import hu.unideb.inf.entity.User.userType;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
 import hu.unideb.inf.util.JpaUserDAO;
@@ -30,6 +31,8 @@ public class FXMLController implements Initializable {
         // TODO
     }
     
+    public String userMode;
+    
     //LOGIN START
     @FXML
     private TextField loginUsername;
@@ -51,9 +54,10 @@ public class FXMLController implements Initializable {
         String password = loginPassword.getText();
         User user = CurrentUser.getInstance(username).getCurrent();
         if(user != null && password.equals(user.getCode())){
-            windowLoader("/fxml/Welcome.fxml", "Welcome");
-            Stage stage = (Stage) loginLoginButton.getScene().getWindow();
-            stage.close();
+                userMode = user.getType().toString();
+                windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
+                 Stage stage = (Stage) loginLoginButton.getScene().getWindow();
+                 stage.close();
         }else{
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Incorrect credentials");
@@ -88,6 +92,39 @@ public class FXMLController implements Initializable {
     }
     //WELCOME END
     
+    //WELCOME ADMIN START
+    
+      @FXML
+    private Button welcomeAdminDownloadButton;
+
+    @FXML
+    void welcomeAdminDownloadButtonPushed() {
+        windowLoader("/fxml/Download.fxml", "Download");
+        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void welcomeAdminExitButtonPushed() {
+        System.exit(0);
+    }
+
+    @FXML
+    void welcomeAdminUploadButtonPushed() {
+        windowLoader("/fxml/Upload.fxml", "Upload");
+        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void welcomeAdminUsersButtonPushed() {
+        windowLoader("/fxml/Admin.fxml", "Admin");
+        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+    
+    //WELCOME ADMIN STOP
+    
     //DOWNLOAD START
       @FXML
     private ListView<?> downloadCourseList;
@@ -109,7 +146,8 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadBackButtonPushed() {
-        windowLoader("/fxml/Welcome.fxml","Welcome");
+        userMode = CurrentUser.getInstance().getCurrent().getType().toString();
+        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
         Stage stage = (Stage) downloadBackButton.getScene().getWindow();
         stage.close();
     }
@@ -158,7 +196,8 @@ public class FXMLController implements Initializable {
 
     @FXML
     void uploadBackButtonPushed() {
-        windowLoader("/fxml/Welcome.fxml","Welcome");
+        userMode = CurrentUser.getInstance().getCurrent().getType().toString();
+        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
         Stage stage = (Stage) uploadBackButton.getScene().getWindow();
         stage.close();
     }
@@ -187,6 +226,8 @@ public class FXMLController implements Initializable {
     }
     
     //UPLOAD END
+    
+    
     
      void windowLoader(String location, String title){
         try {
