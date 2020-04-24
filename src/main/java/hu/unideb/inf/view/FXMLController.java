@@ -84,7 +84,9 @@ public class FXMLController implements Initializable {
     
      @FXML
     void welcomeLogoutButtonPushed() {
-
+        windowLoader("/fxml/Login.fxml", "Login");
+        Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
+        stage.close();
     }
     
     @FXML
@@ -114,7 +116,9 @@ public class FXMLController implements Initializable {
       
        @FXML
     void welcomeAdminLogoutButtonPushed() {
-
+        windowLoader("/fxml/Login.fxml", "Login");
+        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
