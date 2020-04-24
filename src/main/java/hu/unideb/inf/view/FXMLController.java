@@ -78,9 +78,14 @@ public class FXMLController implements Initializable {
     }
     //LOGIN END
     
-    //WELCOME START
+    //WELCOME STUDENT START
     @FXML
     private Button welcomeDownloadButton;
+    
+     @FXML
+    void welcomeLogoutButtonPushed() {
+
+    }
     
     @FXML
     void welcomeDownloadButtonPushed() {
@@ -100,12 +105,17 @@ public class FXMLController implements Initializable {
         Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
         stage.close();
     }
-    //WELCOME END
+    //WELCOME STUDENT END
     
     //WELCOME ADMIN START
     
       @FXML
     private Button welcomeAdminDownloadButton;
+      
+       @FXML
+    void welcomeAdminLogoutButtonPushed() {
+
+    }
 
     @FXML
     void welcomeAdminDownloadButtonPushed() {

@@ -53,5 +53,14 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button layoutX="750.0" layoutY="53.0" mnemonicParsing="false" onAction="#welcomeAdminLogoutButtonPushed">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/logout.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
