@@ -27,5 +27,6 @@
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
         <mapping class="hu.unideb.inf.entity.User" />
         <mapping class="hu.unideb.inf.entity.Course" />
+        <mapping class="hu.unideb.inf.entity.Note" />
     </session-factory>
 </hibernate-configuration>
