@@ -1,6 +1,7 @@
 package hu.unideb.inf.view;
 
 import hu.unideb.inf.entity.User;
+import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
 import hu.unideb.inf.util.JpaUserDAO;
 import hu.unideb.inf.util.UserDAO;
@@ -46,16 +47,15 @@ public class FXMLController implements Initializable {
     void loginLoginButtonPushed() {
         String username = loginUsername.getText();
         String password = loginPassword.getText();
-        try (UserDAO uDAO = new JpaUserDAO()) {
-            User user = uDAO.getByUsername(username);
-            if(user != null && password.equals(user.getCode())){
-                windowLoader("/fxml/Welcome.fxml", "Welcome");
-                Stage stage = (Stage) loginLoginButton.getScene().getWindow();
-                stage.close();
-            }else{
-                System.out.println("User not found or wrong password!");
-            }
-        }
+        //Recreate testusers - becasue long id
+        //User user = CurrentUser.getInstance(username).getCurrent();
+        //if(user != null && password.equals(user.getCode())){
+            windowLoader("/fxml/Welcome.fxml", "Welcome");
+            Stage stage = (Stage) loginLoginButton.getScene().getWindow();
+            stage.close();
+        //}else{
+        //    System.out.println("User not found or wrong password!");
+        //}
     }
     //LOGIN END
     
