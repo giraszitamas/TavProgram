@@ -10,7 +10,6 @@ import hu.unideb.inf.entity.User;
 import hu.unideb.inf.util.JpaEduDAO;
 import hu.unideb.inf.util.EduDAO;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  *
@@ -65,8 +64,6 @@ public class Simulation {
         teacher1.addCourse(subject);
         
         try (EduDAO uDAO = new JpaEduDAO<User>()) {
-            //List<User> users = uDAO.getData();
-            //if(users.contains(uDAO));
             uDAO.save(student1);
             uDAO.save(student2);
             uDAO.save(teacher1);
