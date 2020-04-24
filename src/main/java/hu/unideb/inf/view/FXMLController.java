@@ -268,20 +268,6 @@ public class FXMLController implements Initializable {
     
     //UPLOAD END
     
-    
-    
-     void windowLoader(String location, String title){
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource(location));
-            Stage stage = new Stage(StageStyle.UNDECORATED);
-            stage.setTitle(title);
-            stage.setScene(new Scene(parent));
-            stage.show();
-
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
     //ADMIN START
      
      //ADD START
@@ -365,12 +351,25 @@ public class FXMLController implements Initializable {
         System.out.println(newUsr.toString());
         
     }
+    
+    @FXML
+    void adminAddExitButtonPushed() {
+        System.exit(0);
+    }
     //ADD END
     
     //ADMIN END
+    
+    void windowLoader(String location, String title){
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource(location));
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            stage.setTitle(title);
+            stage.setScene(new Scene(parent));
+            stage.show();
 
-    @FXML
-    void adminExitButtonPushed() {
-        System.exit(0);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
