@@ -24,6 +24,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -123,7 +124,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     void welcomeAdminUsersButtonPushed() {
-        windowLoader("/fxml/Admin.fxml", "Admin");
+        windowLoader("/fxml/Admin.fxml", "Add user");
         Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
         stage.close();
     }
@@ -243,6 +244,7 @@ public class FXMLController implements Initializable {
             stage.show();
 
         } catch (IOException e) {
+            System.out.println(e);
         }
     }
      /********/
@@ -262,11 +264,16 @@ public class FXMLController implements Initializable {
     private TextField username;
 
     @FXML
-    private TextField password;
-    
+    private RadioButton isStudent;
+
     @FXML
-    private CheckBox isStudent;
-    
+    private PasswordField password;
+
+    @FXML
+    private RadioButton isTeacher;
+
+    @FXML
+    private RadioButton isAdmin;
     
     /*void addUser(userType tipus){
         newUsr = new User(tipus, 
@@ -284,9 +291,13 @@ public class FXMLController implements Initializable {
     void addButtonPushed() {
         User newUsr;
         userType tipus = User.userType.TEACHER;
-        Course targy = new Course("SzoftDev");
+        //Course targy = new Course("SzoftDev");
         if(isStudent.isSelected()){
             tipus = User.userType.STUDENT;
+        }else if(isTeacher.isSelected()){
+            tipus = User.userType.TEACHER;
+        }else if(isAdmin.isSelected()){
+            tipus = User.userType.ADMIN;
         }
         
         newUsr = new User(tipus, 
@@ -299,7 +310,7 @@ public class FXMLController implements Initializable {
         );
         
         
-        newUsr.addCourse(targy);
+        //newUsr.addCourse(targy);
         try (EduDAO uDAO = new JpaEduDAO<User>()) {
             uDAO.save(newUsr);
         }
