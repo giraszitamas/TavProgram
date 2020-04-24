@@ -3,10 +3,16 @@ package hu.unideb.inf.view;
 import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.Note;
 import hu.unideb.inf.entity.User;
+import hu.unideb.inf.entity.User.userType;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
+import hu.unideb.inf.util.EduDAO;
+import hu.unideb.inf.util.JpaEduDAO;
+import hu.unideb.inf.util.JpaUserDAO;
+import hu.unideb.inf.util.UserDAO;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -20,7 +26,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -32,6 +40,8 @@ public class FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //TODO
     }
+    
+    public String userMode;
     
     //LOGIN START
     @FXML
@@ -54,9 +64,10 @@ public class FXMLController implements Initializable {
         String password = loginPassword.getText();
         User user = CurrentUser.getInstance(username).getCurrent();
         if(user != null && password.equals(user.getCode())){
-            windowLoader("/fxml/Welcome.fxml", "Welcome");
-            Stage stage = (Stage) loginLoginButton.getScene().getWindow();
-            stage.close();
+                userMode = user.getType().toString();
+                windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
+                 Stage stage = (Stage) loginLoginButton.getScene().getWindow();
+                 stage.close();
         }else{
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Incorrect credentials");
@@ -91,6 +102,39 @@ public class FXMLController implements Initializable {
     }
     //WELCOME END
     
+    //WELCOME ADMIN START
+    
+      @FXML
+    private Button welcomeAdminDownloadButton;
+
+    @FXML
+    void welcomeAdminDownloadButtonPushed() {
+        windowLoader("/fxml/Download.fxml", "Download");
+        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void welcomeAdminExitButtonPushed() {
+        System.exit(0);
+    }
+
+    @FXML
+    void welcomeAdminUploadButtonPushed() {
+        windowLoader("/fxml/Upload.fxml", "Upload");
+        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void welcomeAdminUsersButtonPushed() {
+        windowLoader("/fxml/Admin.fxml", "Add user");
+        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+    
+    //WELCOME ADMIN STOP
+    
     //DOWNLOAD START
     @FXML
     private ListView<Course> downloadCourseList;
@@ -112,7 +156,8 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadBackButtonPushed() {
-        windowLoader("/fxml/Welcome.fxml","Welcome");
+        userMode = CurrentUser.getInstance().getCurrent().getType().toString();
+        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
         Stage stage = (Stage) downloadBackButton.getScene().getWindow();
         stage.close();
     }
@@ -178,7 +223,8 @@ public class FXMLController implements Initializable {
 
     @FXML
     void uploadBackButtonPushed() {
-        windowLoader("/fxml/Welcome.fxml","Welcome");
+        userMode = CurrentUser.getInstance().getCurrent().getType().toString();
+        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
         Stage stage = (Stage) uploadBackButton.getScene().getWindow();
         stage.close();
     }
@@ -208,6 +254,8 @@ public class FXMLController implements Initializable {
     
     //UPLOAD END
     
+    
+    
      void windowLoader(String location, String title){
         try {
             Parent parent = FXMLLoader.load(getClass().getResource(location));
@@ -217,8 +265,82 @@ public class FXMLController implements Initializable {
             stage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
+     /********/
+    @FXML
+    private TextField lastName;
 
+    @FXML
+    private TextField firstName;
+
+    @FXML
+    private TextField birthDate;
+
+    @FXML
+    private TextField emailAddress;
+
+    @FXML
+    private TextField username;
+
+    @FXML
+    private RadioButton isStudent;
+
+    @FXML
+    private PasswordField password;
+
+    @FXML
+    private RadioButton isTeacher;
+
+    @FXML
+    private RadioButton isAdmin;
+    
+    /*void addUser(userType tipus){
+        newUsr = new User(tipus, 
+                        username.getText(), 
+                        firstName.getText(),
+                        lastName.getText(), 
+                        LocalDate.parse(birthDate.getText()), 
+                        emailAddress.getText(), 
+                        password.getText()
+        );
+        System.out.println(newUsr.toString());
+    }*/
+    
+    @FXML
+    void addButtonPushed() {
+        User newUsr;
+        userType tipus = User.userType.TEACHER;
+        //Course targy = new Course("SzoftDev");
+        if(isStudent.isSelected()){
+            tipus = User.userType.STUDENT;
+        }else if(isTeacher.isSelected()){
+            tipus = User.userType.TEACHER;
+        }else if(isAdmin.isSelected()){
+            tipus = User.userType.ADMIN;
+        }
+        
+        newUsr = new User(tipus, 
+                        username.getText(), 
+                        firstName.getText(),
+                        lastName.getText(), 
+                        LocalDate.parse(birthDate.getText()), 
+                        emailAddress.getText(), 
+                        password.getText()
+        );
+        
+        
+        //newUsr.addCourse(targy);
+        try (EduDAO uDAO = new JpaEduDAO<User>()) {
+            uDAO.save(newUsr);
+        }
+        System.out.println(newUsr.toString());
+        
+    }
+
+    @FXML
+    void adminExitButtonPushed() {
+        System.exit(0);
+    }
 }
