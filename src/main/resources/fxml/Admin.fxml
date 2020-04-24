@@ -38,7 +38,6 @@
                               <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="150.0" valignment="TOP" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
                           </rowConstraints>
-                           <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vezeték név" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kereszt név" GridPane.rowIndex="1" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születés ideje" GridPane.rowIndex="2" />
@@ -46,38 +45,39 @@
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználó név" GridPane.rowIndex="4" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó" GridPane.rowIndex="5" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fiók tipus" GridPane.rowIndex="6" />
-                           </children>
-                              <TextField fx:id="lastName" GridPane.columnIndex="1" />
-                              <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="birthDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="emailAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            
-                           <RadioButton fx:id="isStudent" mnemonicParsing="false" text="Hallgató" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <TextField fx:id="adminAddlastName" GridPane.columnIndex="1" />
+                              <TextField fx:id="adminAddfirstName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="adminAddbirthDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="adminAddemailAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="adminAddusername" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           
+                           <RadioButton fx:id="adminAddisStudent" mnemonicParsing="false" text="Hallgató" GridPane.columnIndex="1" GridPane.rowIndex="6">
                               <GridPane.margin>
                                  <Insets top="25.0" />
                               </GridPane.margin>
                            </RadioButton>
-                           <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                           <RadioButton fx:id="isTeacher" mnemonicParsing="false" text="Tanár" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                           <RadioButton fx:id="isAdmin" mnemonicParsing="false" text="Admin" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <PasswordField fx:id="adminAddpassword" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                           <RadioButton fx:id="adminAddisTeacher" mnemonicParsing="false" text="Tanár" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                           <RadioButton fx:id="adminAddisAdmin" mnemonicParsing="false" text="Admin" GridPane.columnIndex="1" GridPane.rowIndex="6">
                               <GridPane.margin>
                                  <Insets top="50.0" />
                               </GridPane.margin>
                            </RadioButton>
                         </GridPane>
                         <Button layoutX="363.0" layoutY="433.0" mnemonicParsing="false" onAction="#addButtonPushed" text="Hozzáad" />
+                        <Button fx:id="adminAddBackButton" layoutX="667.0" layoutY="433.0" mnemonicParsing="false" onAction="#adminAddBackButtonPushed" text="Vissza" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="743.0" layoutY="7.0" minWidth="38.0" mnemonicParsing="false" onAction="#adminExitButtonPushed" prefHeight="23.0" prefWidth="55.0">
+      <Button layoutX="750.0" layoutY="11.0" mnemonicParsing="false" onAction="#uploadExitButtonPushed" prefHeight="25.0" prefWidth="27.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Ujra/Oktato/TavProgram/src/main/resources/icons/X.png" />
+                  <Image url="@../icons/X.png" />
                </image>
             </ImageView>
          </graphic>

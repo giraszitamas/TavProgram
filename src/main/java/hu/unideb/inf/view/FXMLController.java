@@ -268,33 +268,38 @@ public class FXMLController implements Initializable {
             System.out.println(e);
         }
     }
-     /********/
+    //ADMIN START
+     
+     //ADD START
     @FXML
-    private TextField lastName;
+    private TextField adminAddlastName;
 
     @FXML
-    private TextField firstName;
+    private TextField adminAddfirstName;
 
     @FXML
-    private TextField birthDate;
+    private TextField adminAddbirthDate;
 
     @FXML
-    private TextField emailAddress;
+    private TextField adminAddemailAddress;
 
     @FXML
-    private TextField username;
+    private TextField adminAddusername;
 
     @FXML
-    private RadioButton isStudent;
+    private RadioButton adminAddisStudent;
 
     @FXML
-    private PasswordField password;
+    private PasswordField adminAddpassword;
 
     @FXML
-    private RadioButton isTeacher;
+    private RadioButton adminAddisTeacher;
 
     @FXML
-    private RadioButton isAdmin;
+    private RadioButton adminAddisAdmin;
+    
+    @FXML
+    private Button adminAddBackButton;
     
     /*void addUser(userType tipus){
         newUsr = new User(tipus, 
@@ -308,26 +313,34 @@ public class FXMLController implements Initializable {
         System.out.println(newUsr.toString());
     }*/
     
+     @FXML
+    void adminAddBackButtonPushed() {
+        userMode = CurrentUser.getInstance().getCurrent().getType().toString();
+        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
+        Stage stage = (Stage) adminAddBackButton.getScene().getWindow();
+        stage.close();
+    }
+    
     @FXML
     void addButtonPushed() {
         User newUsr;
         userType tipus = User.userType.TEACHER;
         //Course targy = new Course("SzoftDev");
-        if(isStudent.isSelected()){
+        if(adminAddisStudent.isSelected()){
             tipus = User.userType.STUDENT;
-        }else if(isTeacher.isSelected()){
+        }else if(adminAddisTeacher.isSelected()){
             tipus = User.userType.TEACHER;
-        }else if(isAdmin.isSelected()){
+        }else if(adminAddisAdmin.isSelected()){
             tipus = User.userType.ADMIN;
         }
         
         newUsr = new User(tipus, 
-                        username.getText(), 
-                        firstName.getText(),
-                        lastName.getText(), 
-                        LocalDate.parse(birthDate.getText()), 
-                        emailAddress.getText(), 
-                        password.getText()
+                        adminAddusername.getText(), 
+                        adminAddfirstName.getText(),
+                        adminAddlastName.getText(), 
+                        LocalDate.parse(adminAddbirthDate.getText()), 
+                        adminAddemailAddress.getText(), 
+                        adminAddpassword.getText()
         );
         
         
@@ -338,6 +351,9 @@ public class FXMLController implements Initializable {
         System.out.println(newUsr.toString());
         
     }
+    //ADD END
+    
+    //ADMIN END
 
     @FXML
     void adminExitButtonPushed() {
