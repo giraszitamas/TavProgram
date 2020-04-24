@@ -47,15 +47,14 @@ public class FXMLController implements Initializable {
     void loginLoginButtonPushed() {
         String username = loginUsername.getText();
         String password = loginPassword.getText();
-        //Recreate testusers - becasue long id
-        //User user = CurrentUser.getInstance(username).getCurrent();
-        //if(user != null && password.equals(user.getCode())){
+        User user = CurrentUser.getInstance(username).getCurrent();
+        if(user != null && password.equals(user.getCode())){
             windowLoader("/fxml/Welcome.fxml", "Welcome");
             Stage stage = (Stage) loginLoginButton.getScene().getWindow();
             stage.close();
-        //}else{
-        //    System.out.println("User not found or wrong password!");
-        //}
+        }else{
+            System.out.println("User not found or wrong password!");
+        }
     }
     //LOGIN END
     
@@ -121,15 +120,9 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadNoteOpenButtonPushed() {
-        //Testing for findByName
-        try (UserDAO uDAO = new JpaUserDAO()) {
-            User user = uDAO.getByUsername("Tesztellek");
-            if(user != null){
-                System.out.println(user.toString());
-            }else{
-                System.out.println("User not found!");
-            }
-        }
+        //Testing for SurrentUser - get the person who logged in.
+         User user = CurrentUser.getInstance().getCurrent();
+         System.out.println(user.toString());
     }
     
     //DOWNLOAD END
