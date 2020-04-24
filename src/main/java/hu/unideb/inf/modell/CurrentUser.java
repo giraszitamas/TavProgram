@@ -5,14 +5,12 @@
  */
 package hu.unideb.inf.modell;
 
-import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.User;
-import hu.unideb.inf.util.EduDAO;
-import hu.unideb.inf.util.JpaEduDAO;
-import java.time.LocalDate;
+import hu.unideb.inf.util.JpaUserDAO;
+import hu.unideb.inf.util.UserDAO;
 
 /**
- *
+ * Handles the logged in user's data.
  * @author pixel
  */
 public class CurrentUser {
@@ -28,7 +26,8 @@ public class CurrentUser {
         return instance;
     }
     
-    private CurrentUser() {  //privát láthatóságú konstruktor! - egyke megvalósítás
+    private CurrentUser() {
+        current = null;
     }
     
     //Get the instance with a new user
@@ -41,8 +40,25 @@ public class CurrentUser {
         return instance;
     }
     
-    private CurrentUser(User current) {  //privát láthatóságú konstruktor! - egyke megvalósítás
+    private CurrentUser(User current) {
         this.current = current;
+    }
+    
+    //Get the instance with a new user by username
+    public static synchronized CurrentUser getInstance(String username) {
+        if (instance == null) {
+            instance = new CurrentUser(username);
+        }else{
+            instance.getAndSetNew(username);
+        }
+        return instance;
+    }
+    
+    private CurrentUser(String username) {
+        boolean found = this.getAndSetNew(username);
+        if(!found){
+            current = null;
+        }
     }
 
     public User getCurrent() {
@@ -53,4 +69,17 @@ public class CurrentUser {
         this.current = current;
     }
     
+    public boolean getAndSetNew(String username) {
+        boolean found = false;
+        try (UserDAO userDAO = new JpaUserDAO()) {
+            User user = userDAO.getByUsername(username);
+            if(user != null){
+                current = user;
+                found = true;
+            }else{
+                found = false;
+            }
+        }
+        return found;
+    }
 }
