@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLController.java">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLController">
    <children>
-      <TabPane layoutY="-1.0" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="39.0" prefHeight="560.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Tanár felvétel">
+          <Tab text="Felvétel">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane layoutX="134.0" layoutY="85.0" prefHeight="365.0" prefWidth="533.0">
+                        <GridPane layoutX="134.0" layoutY="42.0" prefHeight="365.0" prefWidth="533.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.0" minWidth="10.0" prefWidth="268.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="0.0" prefWidth="265.0" />
@@ -30,6 +33,7 @@
                               <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label prefHeight="16.0" prefWidth="84.0" text="Vezeték név" textAlignment="CENTER" />
@@ -37,36 +41,33 @@
                               <Label prefHeight="16.0" prefWidth="84.0" text="Születési idő" textAlignment="CENTER" GridPane.rowIndex="2" />
                               <Label prefHeight="16.0" prefWidth="84.0" text="Email cím" textAlignment="CENTER" GridPane.rowIndex="3" />
                               <Label prefHeight="16.0" prefWidth="123.0" text="Felhasználónév" textAlignment="CENTER" GridPane.rowIndex="4" />
-                              <Label prefHeight="16.0" prefWidth="84.0" text="Vezeték név" textAlignment="CENTER" GridPane.rowIndex="5" />
+                              <Label prefHeight="16.0" prefWidth="84.0" text="Jelszó" textAlignment="CENTER" GridPane.rowIndex="5" />
+                              <Label prefHeight="16.0" prefWidth="84.0" text="Hallgató" textAlignment="CENTER" GridPane.rowIndex="6" />
+                           </children>
                               <TextField fx:id="lastName" GridPane.columnIndex="1" />
                               <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="birthDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="emailAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextField fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                           </children>
+                              <CheckBox fx:id="isStudent" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
                         </GridPane>
-                        <Button layoutX="363.0" layoutY="490.0" mnemonicParsing="false" onAction="#TeacherAddButtonPushed" text="Hozzáad" />
+                        <Button layoutX="363.0" layoutY="433.0" mnemonicParsing="false" onAction="#addButtonPushed" text="Hozzáad" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Hallgató felvétele">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-            <Tab text="Untitled Tab">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Untitled Tab">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
         </tabs>
       </TabPane>
+      <Button layoutX="767.0" layoutY="7.0" minWidth="35.0" mnemonicParsing="false" onAction="#adminExitButtonPushed" prefHeight="23.0" prefWidth="35.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/X.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      
    </children>
 </AnchorPane>

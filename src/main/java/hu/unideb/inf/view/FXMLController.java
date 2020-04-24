@@ -1,13 +1,17 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.User;
 import hu.unideb.inf.entity.User.userType;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
+import hu.unideb.inf.util.EduDAO;
+import hu.unideb.inf.util.JpaEduDAO;
 import hu.unideb.inf.util.JpaUserDAO;
 import hu.unideb.inf.util.UserDAO;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -238,8 +243,72 @@ public class FXMLController implements Initializable {
             stage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
-     
+     /********/
+    @FXML
+    private TextField lastName;
+
+    @FXML
+    private TextField firstName;
+
+    @FXML
+    private TextField birthDate;
+
+    @FXML
+    private TextField emailAddress;
+
+    @FXML
+    private TextField username;
+
+    @FXML
+    private TextField password;
+    
+    @FXML
+    private CheckBox isStudent;
+    
+    
+    /*void addUser(userType tipus){
+        newUsr = new User(tipus, 
+                        username.getText(), 
+                        firstName.getText(),
+                        lastName.getText(), 
+                        LocalDate.parse(birthDate.getText()), 
+                        emailAddress.getText(), 
+                        password.getText()
+        );
+        System.out.println(newUsr.toString());
+    }*/
+    
+    @FXML
+    void addButtonPushed() {
+        User newUsr;
+        userType tipus = User.userType.TEACHER;
+        Course targy = new Course("SzoftDev");
+        if(isStudent.isSelected()){
+            tipus = User.userType.STUDENT;
+        }
+        
+        newUsr = new User(tipus, 
+                        username.getText(), 
+                        firstName.getText(),
+                        lastName.getText(), 
+                        LocalDate.parse(birthDate.getText()), 
+                        emailAddress.getText(), 
+                        password.getText()
+        );
+        
+        
+        newUsr.addCourse(targy);
+        try (EduDAO uDAO = new JpaEduDAO<User>()) {
+            uDAO.save(newUsr);
+        }
+        System.out.println(newUsr.toString());
+        
+    }
+
+    @FXML
+    void adminExitButtonPushed() {
+        System.exit(0);
+    }
 }
