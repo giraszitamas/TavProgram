@@ -1,6 +1,7 @@
 package hu.unideb.inf.view;
 
 import hu.unideb.inf.entity.Course;
+import hu.unideb.inf.entity.Note;
 import hu.unideb.inf.entity.User;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
@@ -29,7 +30,7 @@ public class FXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //TODO
     }
     
     //LOGIN START
@@ -49,20 +50,20 @@ public class FXMLController implements Initializable {
 
     @FXML
     void loginLoginButtonPushed() {
-//        String username = loginUsername.getText();
-//        String password = loginPassword.getText();
-//        User user = CurrentUser.getInstance(username).getCurrent();
-//        if(user != null && password.equals(user.getCode())){
+        String username = loginUsername.getText();
+        String password = loginPassword.getText();
+        User user = CurrentUser.getInstance(username).getCurrent();
+        if(user != null && password.equals(user.getCode())){
             windowLoader("/fxml/Welcome.fxml", "Welcome");
             Stage stage = (Stage) loginLoginButton.getScene().getWindow();
             stage.close();
-//        }else{
-//            Alert alert = new Alert(AlertType.INFORMATION);
-//            alert.setTitle("Incorrect credentials");
-//            alert.setHeaderText("Incorrect username or password");
-//            alert.showAndWait();
-//            System.out.println("User not found or wrong password!");
-//        }
+        }else{
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Incorrect credentials");
+            alert.setHeaderText("Incorrect username or password");
+            alert.showAndWait();
+            System.out.println("User not found or wrong password!");
+        }
     }
     //LOGIN END
     
@@ -92,13 +93,13 @@ public class FXMLController implements Initializable {
     
     //DOWNLOAD START
     @FXML
-    private ListView<String> downloadCourseList;
+    private ListView<Course> downloadCourseList;
 
     @FXML
     private TextField downloadCourseInput;
 
     @FXML
-    private ListView<String> downloadNoteList;
+    private ListView<Note> downloadNoteList;
 
     @FXML
     private TextField downloadCouseInput;
@@ -118,10 +119,10 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadCourseOpenButtonPushed() {
-        ObservableList<String> list = FXCollections.observableArrayList();
+        ObservableList<Course> list = FXCollections.observableArrayList();
         Set<Course> courses = CurrentUser.getInstance().getCurrent().getCourses();
         for(var course : courses){
-            list.add(course.toString());
+            list.add(course);
         }
         downloadCourseList.setItems(list);
     }
@@ -133,11 +134,23 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadNoteOpenButtonPushed() {
-        //Testing for SurrentUser - get the person who logged in.
-         User user = CurrentUser.getInstance().getCurrent();
-         System.out.println(user.toString());
+        ObservableList<Note> list = FXCollections.observableArrayList();
+        //Get a course and it's notes
+        var notes = downloadCourseList.getSelectionModel().getSelectedItem().getNotes();
+        //Add notes to the list
+        for(Note note : notes){
+            list.add(note);
+        }
+        downloadNoteList.setItems(list);
     }
     
+    @FXML
+    void downloadValueOpenButtonPushed() {
+        //Get a note's link
+        var link = downloadNoteList.getSelectionModel().getSelectedItem().getValue();
+        //Add notes to the list
+        downloadLink.setText(link);
+    }
     //DOWNLOAD END
     
     //UPLOAD START
@@ -207,5 +220,5 @@ public class FXMLController implements Initializable {
             e.printStackTrace();
         }
     }
-     
+
 }

@@ -5,6 +5,7 @@
  */
 package hu.unideb.inf.entity;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -67,5 +68,37 @@ public class Note {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
+    }
     
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Note other = (Note) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return Objects.equals(this.value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

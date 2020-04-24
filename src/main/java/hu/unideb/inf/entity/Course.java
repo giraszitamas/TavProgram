@@ -48,9 +48,9 @@ public class Course implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"))
     private Set<User> users = new HashSet<>();
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "course_id")
-    private Set<Note> notes = new HashSet<>();
+    private Set<Note> notes = new HashSet<Note>();
     
     public Course() {
     }
