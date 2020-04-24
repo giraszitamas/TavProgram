@@ -201,9 +201,6 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        if (this.id != other.id) {
-            return false;
-        }
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }

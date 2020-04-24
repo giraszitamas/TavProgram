@@ -10,6 +10,7 @@ import hu.unideb.inf.entity.User;
 import hu.unideb.inf.util.JpaEduDAO;
 import hu.unideb.inf.util.EduDAO;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -17,7 +18,7 @@ import java.time.LocalDate;
  */
 public class Simulation {
     
-    private User student1, student2, teacher1;
+    private User student1, student2, teacher1, admin1;
     private Course subject;
 
     private static Simulation instance = null;
@@ -41,6 +42,10 @@ public class Simulation {
         return teacher1;
     }
     
+    public User getAdmin1() {
+        return admin1;
+    }
+    
     public Course getSubject() {
         return subject;
     }
@@ -49,6 +54,7 @@ public class Simulation {
         student1 = new User(User.userType.STUDENT, "ElekVokOztCso", "János", "Kocsis", LocalDate.parse("1999-04-04"), "jonnyyespapa@malbox.unideb.hu", "jelszó123");
         student2 = new User(User.userType.STUDENT, "Tesztellek", "Elek", "Teszt", LocalDate.parse("1998-12-03"), "szamonkerlek@malbox.unideb.hu", "TESZT123");
         teacher1 = new User(User.userType.TEACHER, "EzAlma", "Péter", "Alma", LocalDate.parse("1981-07-06"), "ezalma@malbox.unideb.hu", "jelszó123");
+        admin1 = new User(User.userType.ADMIN, "admin", "Jenő", "Menő", LocalDate.parse("1977-07-07"), "nagyonadmin@malbox.unideb.hu", "admin123");
         subject = new Course("SzoftDev");
         
 //        subject.addUser(student1);
@@ -59,9 +65,12 @@ public class Simulation {
         teacher1.addCourse(subject);
         
         try (EduDAO uDAO = new JpaEduDAO<User>()) {
+            //List<User> users = uDAO.getData();
+            //if(users.contains(uDAO));
             uDAO.save(student1);
             uDAO.save(student2);
             uDAO.save(teacher1);
+            uDAO.save(admin1);
             //uDAO.save(subject);
         }
         
