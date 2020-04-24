@@ -1,13 +1,16 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.entity.Course;
+import hu.unideb.inf.entity.Note;
 import hu.unideb.inf.entity.User;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
-import hu.unideb.inf.util.JpaUserDAO;
-import hu.unideb.inf.util.UserDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
@@ -27,7 +30,7 @@ public class FXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //TODO
     }
     
     //LOGIN START
@@ -89,14 +92,14 @@ public class FXMLController implements Initializable {
     //WELCOME END
     
     //DOWNLOAD START
-      @FXML
-    private ListView<?> downloadCourseList;
+    @FXML
+    private ListView<Course> downloadCourseList;
 
     @FXML
     private TextField downloadCourseInput;
 
     @FXML
-    private ListView<?> downloadNoteList;
+    private ListView<Note> downloadNoteList;
 
     @FXML
     private TextField downloadCouseInput;
@@ -116,7 +119,12 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadCourseOpenButtonPushed() {
-        
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        Set<Course> courses = CurrentUser.getInstance().getCurrent().getCourses();
+        for(var course : courses){
+            list.add(course);
+        }
+        downloadCourseList.setItems(list);
     }
 
     @FXML
@@ -126,11 +134,23 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadNoteOpenButtonPushed() {
-        //Testing for SurrentUser - get the person who logged in.
-         User user = CurrentUser.getInstance().getCurrent();
-         System.out.println(user.toString());
+        ObservableList<Note> list = FXCollections.observableArrayList();
+        //Get a course and it's notes
+        var notes = downloadCourseList.getSelectionModel().getSelectedItem().getNotes();
+        //Add notes to the list
+        for(Note note : notes){
+            list.add(note);
+        }
+        downloadNoteList.setItems(list);
     }
     
+    @FXML
+    void downloadValueOpenButtonPushed() {
+        //Get a note's link
+        var link = downloadNoteList.getSelectionModel().getSelectedItem().getValue();
+        //Add notes to the list
+        downloadLink.setText(link);
+    }
     //DOWNLOAD END
     
     //UPLOAD START
@@ -200,5 +220,5 @@ public class FXMLController implements Initializable {
             e.printStackTrace();
         }
     }
-     
+
 }

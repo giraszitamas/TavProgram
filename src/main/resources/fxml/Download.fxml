@@ -37,6 +37,7 @@
       <TextField fx:id="downloadCouseInput" layoutX="301.0" layoutY="514.0" prefHeight="25.0" prefWidth="200.0" />
       <Button layoutX="115.0" layoutY="550.0" mnemonicParsing="false" onAction="#downloadCourseOpenButtonPushed" text="Megnyitás" />
       <Button layoutX="366.0" layoutY="550.0" mnemonicParsing="false" onAction="#downloadNoteOpenButtonPushed" text="Megnyitás" />
+      <Button layoutX="460.0" layoutY="550.0" mnemonicParsing="false" onAction="#downloadValueOpenButtonPushed" text="Megnyitás" />
       <TextArea fx:id="downloadLink" layoutX="551.0" layoutY="120.0" prefHeight="136.0" prefWidth="200.0" />
       <Text layoutX="596.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltési link">
          <font>
