@@ -111,11 +111,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadCourseOpenButtonPushed() {
-        System.out.println("You clicked me!");
-        //Save test data
-        Simulation simulation = Simulation.getInstance();
         
-        System.out.println("Done!");
     }
 
     @FXML
@@ -170,7 +166,10 @@ public class FXMLController implements Initializable {
 
     @FXML
     void uploadCourseOpenButtonPushed() {
-
+        System.out.println("You clicked me!");
+        //Save test data
+        Simulation simulation = Simulation.getInstance();
+        System.out.println("Done!");
     }
 
     @FXML
