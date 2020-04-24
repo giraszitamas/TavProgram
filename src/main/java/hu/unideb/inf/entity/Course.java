@@ -91,7 +91,9 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "Course [id=" + id + ", name=" + name + ", responsibleId=" + responsibleId + ", users=" + users + ']';
+        StringBuilder sb = new StringBuilder();
+        sb.append(id).append(" - ").append(name);
+        return sb.toString();
     }
     
 }

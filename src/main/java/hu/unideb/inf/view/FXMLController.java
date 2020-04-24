@@ -1,13 +1,15 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.User;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
-import hu.unideb.inf.util.JpaUserDAO;
-import hu.unideb.inf.util.UserDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
@@ -89,14 +91,14 @@ public class FXMLController implements Initializable {
     //WELCOME END
     
     //DOWNLOAD START
-      @FXML
-    private ListView<?> downloadCourseList;
+    @FXML
+    private ListView<String> downloadCourseList;
 
     @FXML
     private TextField downloadCourseInput;
 
     @FXML
-    private ListView<?> downloadNoteList;
+    private ListView<String> downloadNoteList;
 
     @FXML
     private TextField downloadCouseInput;
@@ -116,7 +118,12 @@ public class FXMLController implements Initializable {
 
     @FXML
     void downloadCourseOpenButtonPushed() {
-        
+        ObservableList<String> list = FXCollections.observableArrayList();
+        Set<Course> courses = CurrentUser.getInstance().getCurrent().getCourses();
+        for(var course : courses){
+            list.add(course.toString());
+        }
+        downloadCourseList.setItems(list);
     }
 
     @FXML
