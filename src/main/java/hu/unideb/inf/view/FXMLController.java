@@ -15,6 +15,7 @@ import hu.unideb.inf.util.UserDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -368,6 +369,20 @@ public class FXMLController implements Initializable {
         Stage stage = (Stage) courseLogInBackButton.getScene().getWindow();
         stage.close();
     }
+    
+    @FXML
+    void searchShowAllPushed() {
+        //Get all courses
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        List<Course> courses;
+        try(EduDAO cDao = new JpaEduDAO<Course>()){
+            courses = cDao.getData(Course.class);
+        }
+        for(var course : courses){
+            list.add(course);
+        }
+        foundCourse.setItems(list);
+    }
 
     @FXML
     void searchCoursePushed() {
@@ -387,7 +402,7 @@ public class FXMLController implements Initializable {
     void courseLogInExitButtonPushed() {
         System.exit(0);
     }
-    //COURSE ADD END
+    //COURSE LOG IN END
      
     //ADMIN START
     //ADD START

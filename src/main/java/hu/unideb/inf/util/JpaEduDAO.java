@@ -71,8 +71,8 @@ public class JpaEduDAO<T> implements EduDAO<T>{
     }
 
     @Override
-    public List<T> getData() {
-        String hql = "FROM hu.unideb.inf.entity.User";
+    public List<T> getData(Class<T> clazz) {
+        var hql = "FROM " + clazz.getCanonicalName();
         Query query = session.createQuery(hql);
         return query.list();
     }

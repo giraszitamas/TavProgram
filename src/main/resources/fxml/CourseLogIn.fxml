@@ -51,5 +51,6 @@
             <Font size="14.0" />
          </font>
       </Text>
+      <Button layoutX="49.0" layoutY="486.0" mnemonicParsing="false" onAction="#searchShowAllPushed" text="Listázás" />
    </children>
 </AnchorPane>
