@@ -6,7 +6,9 @@ import hu.unideb.inf.entity.User;
 import hu.unideb.inf.entity.User.userType;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
+import hu.unideb.inf.util.CourseDAO;
 import hu.unideb.inf.util.EduDAO;
+import hu.unideb.inf.util.JpaCourseDAO;
 import hu.unideb.inf.util.JpaEduDAO;
 import hu.unideb.inf.util.JpaUserDAO;
 import hu.unideb.inf.util.UserDAO;
@@ -60,21 +62,22 @@ public class FXMLController implements Initializable {
 
     @FXML
     void loginLoginButtonPushed() {
-        String username = loginUsername.getText();
-        String password = loginPassword.getText();
-        User user = CurrentUser.getInstance(username).getCurrent();
-        if(user != null && password.equals(user.getCode())){
-                userMode = user.getType().toString();
-                windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
+//        String username = loginUsername.getText();
+//        String password = loginPassword.getText();
+//        User user = CurrentUser.getInstance(username).getCurrent();
+//        if(user != null && password.equals(user.getCode())){
+//                userMode = user.getType().toString();
+//                windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
+                 windowLoader("/fxml/WelcomeSTUDENT.fxml", "Welcome");
                  Stage stage = (Stage) loginLoginButton.getScene().getWindow();
                  stage.close();
-        }else{
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Incorrect credentials");
-            alert.setHeaderText("Incorrect username or password");
-            alert.showAndWait();
-            System.out.println("User not found or wrong password!");
-        }
+//        }else{
+//            Alert alert = new Alert(AlertType.INFORMATION);
+//            alert.setTitle("Incorrect credentials");
+//            alert.setHeaderText("Incorrect username or password");
+//            alert.showAndWait();
+//            System.out.println("User not found or wrong password!");
+//        }
     }
     //LOGIN END
     
@@ -104,6 +107,13 @@ public class FXMLController implements Initializable {
     @FXML
     void welcomeUploadButtonPushed() {
         windowLoader("/fxml/Upload.fxml", "Upload");
+        Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
+    void studentCourseLogIn() {
+        windowLoader("/fxml/CourseLogIn.fxml", "Course Log In");
         Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
         stage.close();
     }
@@ -319,9 +329,68 @@ public class FXMLController implements Initializable {
             System.out.println(e);
         }
     }
-    //ADMIN START
+    
+    //COURSE ADD
+    @FXML
+    private ListView<Course> foundCourse;
+
+    @FXML
+    private TextField courseName;
+
+    @FXML
+    private Button courseLogInBackButton;
+
+    @FXML
+    private TextField courseCode;
+    
+    @FXML
+    void addCoursePushed() {
+        var code = courseCode.getText();
+        var course = foundCourse.getSelectionModel().getSelectedItem();
+        var theChosenOne = CurrentUser.getInstance().getCurrent();
+        if(code.equals(course.getCode())){
+            theChosenOne.addCourse(course);
+            try(EduDAO uDao = new JpaEduDAO<User>()){
+                uDao.update(theChosenOne);
+            }
+        }else{
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Incorrect credentials");
+            alert.setHeaderText("Incorrect password!");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void courseLogInBackButtonPushed() {
+        userMode = CurrentUser.getInstance().getCurrent().getType().toString();
+        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
+        Stage stage = (Stage) courseLogInBackButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void searchCoursePushed() {
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        String name = courseName.getText();
+        Course course;
+        //Get a course
+        try(CourseDAO courseDao = new JpaCourseDAO()){
+             course = courseDao.getByName(name);
+        }
+        //Add course to the list
+        list.add(course);
+        foundCourse.setItems(list);
+    }
+
+    @FXML
+    void courseLogInExitButtonPushed() {
+        System.exit(0);
+    }
+    //COURSE ADD END
      
-     //ADD START
+    //ADMIN START
+    //ADD START
     @FXML
     private TextField adminAddlastName;
 

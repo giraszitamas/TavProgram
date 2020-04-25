@@ -38,6 +38,9 @@ public class Course implements Serializable {
     @Column(unique = false, name = "name")
     private String name;
     
+    @Column(unique = false, name = "code")
+    private String code;
+    
     @Column(unique = false, name = "responsible_id")
     private long responsibleId;
     
@@ -55,8 +58,9 @@ public class Course implements Serializable {
     public Course() {
     }
     
-    public Course(String name) {
+    public Course(String name, String code) {
         this.name = name;
+        this.code = code;
     }
 
     public String getName() {
@@ -93,6 +97,14 @@ public class Course implements Serializable {
 
     public Set<User> getUsers() {
         return users;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public long getResponsibleId() {

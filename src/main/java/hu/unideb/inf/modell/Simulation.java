@@ -59,7 +59,7 @@ public class Simulation {
         note1 = new Note("Jegyzet1", "Ez egy jegyzet.");
         note2 = new Note("Jegyzet2");
         note2.setValue("Ez egy másik jegyzet.");
-        subject = new Course("SzoftDev");
+        subject = new Course("SzoftDev", "123");
         
         //Save the users
         try (EduDAO uDAO = new JpaEduDAO<User>()) {
