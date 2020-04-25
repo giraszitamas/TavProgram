@@ -458,7 +458,7 @@ public class FXMLController implements Initializable {
     void teacherBackButtonPushed() {
         userMode = CurrentUser.getInstance().getCurrent().getType().toString();
         windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
-        Stage stage = (Stage) adminAddBackButton.getScene().getWindow();
+        Stage stage = (Stage) teacherBackButton.getScene().getWindow();
         stage.close();
     }
 
