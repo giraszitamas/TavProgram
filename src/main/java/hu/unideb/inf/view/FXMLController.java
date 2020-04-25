@@ -62,22 +62,22 @@ public class FXMLController implements Initializable {
 
     @FXML
     void loginLoginButtonPushed() {
-//        String username = loginUsername.getText();
-//        String password = loginPassword.getText();
-//        User user = CurrentUser.getInstance(username).getCurrent();
-//        if(user != null && password.equals(user.getCode())){
-//                userMode = user.getType().toString();
-//                windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
-                 windowLoader("/fxml/WelcomeSTUDENT.fxml", "Welcome");
-                 Stage stage = (Stage) loginLoginButton.getScene().getWindow();
-                 stage.close();
-//        }else{
-//            Alert alert = new Alert(AlertType.INFORMATION);
-//            alert.setTitle("Incorrect credentials");
-//            alert.setHeaderText("Incorrect username or password");
-//            alert.showAndWait();
-//            System.out.println("User not found or wrong password!");
-//        }
+        String username = loginUsername.getText();
+        String password = loginPassword.getText();
+        User user = CurrentUser.getInstance(username).getCurrent();
+        if(user != null && password.equals(user.getCode())){
+                userMode = user.getType().toString();
+                windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
+//                windowLoader("/fxml/WelcomeSTUDENT.fxml", "Welcome");
+                Stage stage = (Stage) loginLoginButton.getScene().getWindow();
+                stage.close();
+        }else{
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Incorrect credentials");
+            alert.setHeaderText("Incorrect username or password");
+            alert.showAndWait();
+            System.out.println("User not found or wrong password!");
+        }
     }
     //LOGIN END
     
