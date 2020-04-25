@@ -70,7 +70,6 @@ public class Simulation {
         }
         
         //Add the users to the course
-        subject.addUser(student1);
         subject.addUser(student2);
         subject.addUser(teacher1);
         subject.setResponsible(teacher1);
