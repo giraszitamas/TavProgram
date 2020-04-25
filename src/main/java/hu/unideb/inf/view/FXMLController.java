@@ -109,9 +109,46 @@ public class FXMLController implements Initializable {
     }
     //WELCOME STUDENT END
     
-    //WELCOME ADMIN START
+    //WELCOME TEACHER START
+    @FXML
+    private Button welcomeTeacherDownloadButton;
+      
+       @FXML
+    void welcomeTeacherLogoutButtonPushed() {
+        windowLoader("/fxml/Login.fxml", "Login");
+        Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void welcomeTeacherDownloadButtonPushed() {
+        windowLoader("/fxml/Download.fxml", "Download");
+        Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void welcomeTeacherExitButtonPushed() {
+        System.exit(0);
+    }
+
+    @FXML
+    void welcomeTeacherUploadButtonPushed() {
+        windowLoader("/fxml/Upload.fxml", "Upload");
+        Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void welcomeTeacherUsersButtonPushed() {
+        windowLoader("/fxml/Teacher.fxml", "Add user");
+        Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+    //WELCOME TEACHER STOP
     
-      @FXML
+    //WELCOME ADMIN START
+    @FXML
     private Button welcomeAdminDownloadButton;
       
        @FXML
@@ -367,10 +404,70 @@ public class FXMLController implements Initializable {
     }
     //ADD END
     
-    //ADMIN END
-
     @FXML
     void adminExitButtonPushed() {
         System.exit(0);
     }
+    //ADMIN END
+    
+    // TEACHER START
+    // TEACHER ADD STUDENT
+    @FXML
+    private ListView<User> foundStudents;
+
+    @FXML
+    private TextField searchUsername;
+
+    @FXML
+    private TextField searchFirstName;
+
+    @FXML
+    private TextField searchLastName;
+
+    @FXML
+    private Button teacherBackButton;
+
+    @FXML
+    private TextField searchEmail;
+
+    @FXML
+    void addStudentPushed() {
+        //TODO: Select a course somehow. - if it will be needed...
+//        //Add the course to the users
+//        User selectedUser = foundStudents.getSelectionModel().getSelectedItem();
+//        selectedUser.addCourse(subject);
+//        try (EduDAO uDAO = new JpaEduDAO<User>()) {
+//            uDAO.update(selectedUser);
+//        }
+    }
+
+    @FXML
+    void searchStudentPushed() {
+        ObservableList<User> list = FXCollections.observableArrayList();
+        //get the username
+        String username = searchUsername.getText();
+        //search the user and add it to the list
+        try (UserDAO userDAO = new JpaUserDAO()) {
+            User user = userDAO.getByUsername(username);
+            list.add(user);
+            foundStudents.setItems(list);
+        }
+    }
+
+    @FXML
+    void teacherBackButtonPushed() {
+        userMode = CurrentUser.getInstance().getCurrent().getType().toString();
+        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
+        Stage stage = (Stage) adminAddBackButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void teacherExitButtonPushed() {
+        System.exit(0);
+    }
+    // TEACHER ADD STUDENT END
+    // TEACHER END
+
+    
 }

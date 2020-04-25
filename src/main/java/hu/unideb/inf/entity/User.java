@@ -181,7 +181,21 @@ public class User implements Serializable {
         sb.append("code=").append(code).append(", ");
         return sb.toString();
     }
+    
+    public String allDataInString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("User: id=").append(id).append(", ");
+        sb.append("username=").append(username).append(", ");
+        sb.append("type=").append(type).append(", ");
+        sb.append("FirstName=").append(FirstName).append(", ");
+        sb.append("LastName=").append(LastName).append(", ");
+        sb.append("birthDate=").append(birthDate).append(", ");
+        sb.append("email=").append(email).append(", ");
+        sb.append("code=").append(code);
+        return sb.toString();
+    }
 
+    //ID hashcode
     @Override
     public int hashCode() {
         int hash = 7;
