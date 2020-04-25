@@ -540,8 +540,10 @@ public class FXMLController implements Initializable {
     @FXML
     void teacherExitButtonPushed() {
         System.exit(0);
-	// TEACHER ADD STUDENT END
+    }
+    // TEACHER ADD STUDENT END
     // TEACHER END
+    
     void windowLoader(String location, String title){
         try {
             Parent parent = FXMLLoader.load(getClass().getResource(location));
