@@ -313,23 +313,8 @@ public class FXMLController implements Initializable {
     void uploadUploadButton() {
 
     }
-    
     //UPLOAD END
-    
-    
-    
-     void windowLoader(String location, String title){
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource(location));
-            Stage stage = new Stage(StageStyle.UNDECORATED);
-            stage.setTitle(title);
-            stage.setScene(new Scene(parent));
-            stage.show();
 
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
     
     //COURSE ADD
     @FXML
@@ -486,6 +471,11 @@ public class FXMLController implements Initializable {
         System.out.println(newUsr.toString());
         
     }
+    
+    @FXML
+    void adminAddExitButtonPushed() {
+        System.exit(0);
+    }
     //ADD END
     
     @FXML
@@ -493,7 +483,8 @@ public class FXMLController implements Initializable {
         System.exit(0);
     }
     //ADMIN END
-    
+	
+	
     // TEACHER START
     // TEACHER ADD STUDENT
     @FXML
@@ -549,9 +540,18 @@ public class FXMLController implements Initializable {
     @FXML
     void teacherExitButtonPushed() {
         System.exit(0);
-    }
-    // TEACHER ADD STUDENT END
+	// TEACHER ADD STUDENT END
     // TEACHER END
+    void windowLoader(String location, String title){
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource(location));
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            stage.setTitle(title);
+            stage.setScene(new Scene(parent));
+            stage.show();
 
-    
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 }
