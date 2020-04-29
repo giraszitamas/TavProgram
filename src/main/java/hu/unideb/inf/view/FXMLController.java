@@ -46,7 +46,7 @@ public class FXMLController implements Initializable {
     
     public String userMode;
     
-    //LOGIN START
+    //LOGIN START X
     @FXML
     private TextField loginUsername;
 
@@ -69,7 +69,6 @@ public class FXMLController implements Initializable {
         if(user != null && password.equals(user.getCode())){
                 userMode = user.getType().toString();
                 windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
-//                windowLoader("/fxml/WelcomeSTUDENT.fxml", "Welcome");
                 Stage stage = (Stage) loginLoginButton.getScene().getWindow();
                 stage.close();
         }else{
@@ -82,7 +81,7 @@ public class FXMLController implements Initializable {
     }
     //LOGIN END
     
-    //WELCOME STUDENT START
+    //WELCOME STUDENT START X
     @FXML
     private Button welcomeDownloadButton;
     
@@ -120,7 +119,7 @@ public class FXMLController implements Initializable {
     }
     //WELCOME STUDENT END
     
-    //WELCOME TEACHER START
+    //WELCOME TEACHER START X
     @FXML
     private Button welcomeTeacherDownloadButton;
       
@@ -158,7 +157,7 @@ public class FXMLController implements Initializable {
     }
     //WELCOME TEACHER STOP
     
-    //WELCOME ADMIN START
+    //WELCOME ADMIN START X
     @FXML
     private Button welcomeAdminDownloadButton;
       

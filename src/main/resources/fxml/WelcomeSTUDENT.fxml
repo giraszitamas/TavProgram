@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.WelcomeSTUDENTController">
    <children>
       <Text layoutX="336.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!">
          <font>
@@ -19,7 +19,7 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <Button fx:id="welcomeDownloadButton" layoutX="226.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeDownloadButtonPushed">
+      <Button fx:id="welcomeDownloadButton" layoutX="63.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeDownloadButtonPushed">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -28,7 +28,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="408.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeUploadButtonPushed">
+      <Button layoutX="324.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeUploadButtonPushed">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -53,6 +53,16 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="588.0" layoutY="402.0" mnemonicParsing="false" onAction="#studentCourseLogIn" text="Tárgyfelvétel" />
+      <Button layoutX="569.0" layoutY="271.0" mnemonicParsing="false" onAction="#studentCourseLogIn" prefHeight="158.0" prefWidth="166.0">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/CourseAdd.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Text layoutX="125.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltés" />
+      <Text layoutX="385.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés" />
+      <Text layoutX="618.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tárgyfelvétel" />
    </children>
 </AnchorPane>

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.WelcomeADMINController">
    <children>
       <Text layoutX="336.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!">
          <font>
@@ -62,5 +62,8 @@
             </ImageView>
          </graphic>
       </Button>
+      <Text layoutX="125.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltés" />
+      <Text layoutX="385.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés" />
+      <Text layoutX="578.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználók Adminisztrálása" />
    </children>
 </AnchorPane>
