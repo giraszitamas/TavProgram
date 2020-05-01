@@ -28,6 +28,7 @@
       </Text>
       <ListView fx:id="uploadCourseList" layoutX="50.0" layoutY="120.0" prefHeight="373.0" prefWidth="451.0" />
       <Button layoutX="240.0" layoutY="524.0" mnemonicParsing="false" onAction="#uploadCourseOpenButtonPushed" text="Megnyitás" />
+      <Button layoutX="120.0" layoutY="524.0" mnemonicParsing="false" onAction="#simulationPushed" text="Szimulálás" />
       <TextArea fx:id="uploadLink" layoutX="551.0" layoutY="120.0" prefHeight="136.0" prefWidth="200.0" />
       <Text layoutX="596.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltési link">
          <font>

@@ -41,6 +41,7 @@ public class JpaEduDAO<T> implements EduDAO<T>{
             if(transaction != null){
                 transaction.rollback();
             }
+            System.out.println(e);
         }
     }
 
@@ -54,6 +55,7 @@ public class JpaEduDAO<T> implements EduDAO<T>{
             if(transaction != null){
                 transaction.rollback();
             }
+            System.out.println(e);
         }
     }
 
@@ -67,6 +69,7 @@ public class JpaEduDAO<T> implements EduDAO<T>{
             if(transaction != null){
                 transaction.rollback();
             }
+            System.out.println(e);
         }
     }
 

@@ -35,7 +35,7 @@ public class Course implements Serializable {
     @Column(unique = true, name = "course_id")
     private long id;
     
-    @Column(unique = false, name = "name")
+    @Column(unique = true, name = "name")
     private String name;
     
     @Column(unique = false, name = "code")
@@ -44,7 +44,7 @@ public class Course implements Serializable {
     @Column(unique = false, name = "responsible_id")
     private long responsibleId;
     
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
     name = "user_access",
     joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id"),
@@ -152,13 +152,34 @@ public class Course implements Serializable {
         if (this.responsibleId != other.responsibleId) {
             return false;
         }
-        return Objects.equals(this.name, other.name);
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return Objects.equals(this.code, other.code);
     }
+    
+    
     
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(id).append(" - ").append(name);
+        return sb.toString();
+    }
+    
+    public String printAll(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getId()).append("-").append(this.getName()).append('-').append(this.getCode()).append('\n');
+        sb.append("Users: ");
+        var us = this.getUsers();
+        us.forEach((user) -> {
+            sb.append(user).append('\n');
+        });
+        sb.append("Notes: ");
+        var ns = this.getNotes();
+        ns.forEach((note) -> {
+            sb.append(note).append('\n');
+        });
         return sb.toString();
     }
     

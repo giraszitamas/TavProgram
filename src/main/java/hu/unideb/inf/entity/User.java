@@ -56,7 +56,7 @@ public class User implements Serializable {
     @Column(unique = false, name = "code")
     private String code;
     
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
     name = "user_access",
     joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),

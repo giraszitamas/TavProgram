@@ -15,6 +15,7 @@ public interface UserDAO extends AutoCloseable {
     
     public User getByUsername(String name);
     public User getById(long id);
+    public boolean addCourse(long courseId);
     
     @Override
     default public void close() {

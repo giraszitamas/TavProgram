@@ -35,14 +35,14 @@ public class WelcomeTEACHERController extends LoginController implements Initial
     
     @FXML
     void welcomeTeacherAddCoursePushed() {
-        windowLoader("/fxml/Teacher.fxml", "Add Student");
+        windowLoader("/fxml/AddCourse.fxml", "Add Course");
         Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     void welcomeTeacherAddStudentPushed() {
-        windowLoader("/fxml/Teacher.fxml", "Add Student");
+        windowLoader("/fxml/AddStudent.fxml", "Add Student");
         Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
         stage.close();
     }

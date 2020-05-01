@@ -69,30 +69,34 @@ public class Simulation {
             uDAO.save(admin1);
         }
         
-        //Add the users to the course
-        subject.addUser(student2);
-        subject.addUser(teacher1);
-        subject.setResponsible(teacher1);
-        try (EduDAO cDAO = new JpaEduDAO<Course>()) {
-            cDAO.save(subject);
-        }
-        try (EduDAO uDAO = new JpaEduDAO<Course>()){
-            uDAO.update(subject);
-        }
-        
-//        //Add the course to the users
-//        student1.addCourse(subject);
-//        student2.addCourse(subject);
-//        teacher1.addCourse(subject);
+//        //Add the users to the course
+//        subject.addUser(student2);
+//        subject.addUser(teacher1);
 //        subject.setResponsible(teacher1);
 //        try (EduDAO cDAO = new JpaEduDAO<Course>()) {
 //            cDAO.save(subject);
 //        }
-//        try (EduDAO uDAO = new JpaEduDAO<User>()) {
-//            uDAO.update(student1);
-//            uDAO.update(student2);
-//            uDAO.update(teacher1);
+//        try (EduDAO cDAO = new JpaEduDAO<Course>()){
+//            cDAO.update(subject);
 //        }
+        
+        //Add the course to the users
+        var subject2 = new Course("Menő", "123");
+        student1.addCourse(subject);
+        student2.addCourse(subject);
+        teacher1.addCourse(subject);
+        teacher1.addCourse(subject2);
+        subject.setResponsible(teacher1);
+        subject2.setResponsible(teacher1);
+        try (EduDAO cDAO = new JpaEduDAO<Course>()) {
+            cDAO.save(subject);
+            cDAO.save(subject2);
+        }
+        try (EduDAO uDAO = new JpaEduDAO<User>()) {
+            uDAO.update(student1);
+            uDAO.update(student2);
+            uDAO.update(teacher1);
+        }
         
         //Add the notes to the course
         subject.addNote(note1);
