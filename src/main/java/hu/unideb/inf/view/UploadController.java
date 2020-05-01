@@ -99,7 +99,7 @@ public class UploadController extends LoginController implements Initializable {
     void saveChanges(){
         try(EduDAO cDAO = new JpaEduDAO<Course>()){
             for(var c : CurrentUser.getInstance().getCurrent().getCourses()){
-                cDAO.save(c);
+                cDAO.update(c);
             }
         }catch(Exception e){
             System.out.println(e);

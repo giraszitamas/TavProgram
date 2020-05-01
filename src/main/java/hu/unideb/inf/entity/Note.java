@@ -88,9 +88,6 @@ public class Note {
             return false;
         }
         final Note other = (Note) obj;
-        if (this.id != other.id) {
-            return false;
-        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
