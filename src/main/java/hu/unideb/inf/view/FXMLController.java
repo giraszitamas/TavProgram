@@ -1,3 +1,4 @@
+/*
 package hu.unideb.inf.view;
 
 import hu.unideb.inf.entity.Course;
@@ -420,17 +421,17 @@ public class FXMLController implements Initializable {
     @FXML
     private Button adminAddBackButton;
     
-    /*void addUser(userType tipus){
-        newUsr = new User(tipus, 
-                        username.getText(), 
-                        firstName.getText(),
-                        lastName.getText(), 
-                        LocalDate.parse(birthDate.getText()), 
-                        emailAddress.getText(), 
-                        password.getText()
-        );
-        System.out.println(newUsr.toString());
-    }*/
+//    void addUser(userType tipus){
+//        newUsr = new User(tipus, 
+//                        username.getText(), 
+//                        firstName.getText(),
+//                        lastName.getText(), 
+//                        LocalDate.parse(birthDate.getText()), 
+//                        emailAddress.getText(), 
+//                        password.getText()
+//        );
+//        System.out.println(newUsr.toString());
+//    }
     
      @FXML
     void adminAddBackButtonPushed() {
@@ -556,3 +557,4 @@ public class FXMLController implements Initializable {
         }
     }
 }
+*/

@@ -18,12 +18,18 @@ import javafx.stage.Stage;
 
 public class DownloadController extends LoginController implements Initializable {
     
+    //DOWNLOAD START
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        //Load the user's courses - Test if this works
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        Set<Course> courses = CurrentUser.getInstance().getCurrent().getCourses();
+        for(var course : courses){
+            list.add(course);
+        }
+        downloadCourseList.setItems(list);
     }
     
-    //DOWNLOAD START
     @FXML
     private ListView<Course> downloadCourseList;
 

@@ -66,7 +66,7 @@ public class User implements Serializable {
     //The code is set to null, we can catch Users without it.
     //Are we need this?
     public User() {
-        this.code = null;
+        
     }
     
     //  !!!!

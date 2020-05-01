@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.modell.CurrentUser;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -18,14 +19,7 @@ public class WelcomeADMINController extends LoginController implements Initializ
     //WELCOME ADMIN START
     @FXML
     private Button welcomeAdminDownloadButton;
-      
-       @FXML
-    void welcomeAdminLogoutButtonPushed() {
-        windowLoader("/fxml/Login.fxml", "Login");
-        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
-        stage.close();
-    }
-
+    
     @FXML
     void welcomeAdminDownloadButtonPushed() {
         windowLoader("/fxml/Download.fxml", "Download");
@@ -52,5 +46,12 @@ public class WelcomeADMINController extends LoginController implements Initializ
         stage.close();
     }
     
+    @FXML
+    void welcomeAdminLogoutButtonPushed() {
+        CurrentUser.logOut();
+        windowLoader("/fxml/Login.fxml", "Login");
+        Stage stage = (Stage) welcomeAdminDownloadButton.getScene().getWindow();
+        stage.close();
+    }
     //WELCOME ADMIN STOP
 }

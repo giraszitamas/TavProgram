@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.modell.CurrentUser;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -13,18 +14,10 @@ public class WelcomeTEACHERController extends LoginController implements Initial
     public void initialize(URL url, ResourceBundle rb) {
         //TODO
     }
-    
 
     //WELCOME TEACHER START
     @FXML
     private Button welcomeTeacherDownloadButton;
-      
-       @FXML
-    void welcomeTeacherLogoutButtonPushed() {
-        windowLoader("/fxml/Login.fxml", "Login");
-        Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
-        stage.close();
-    }
 
     @FXML
     void welcomeTeacherDownloadButtonPushed() {
@@ -34,22 +27,37 @@ public class WelcomeTEACHERController extends LoginController implements Initial
     }
 
     @FXML
-    void welcomeTeacherExitButtonPushed() {
-        System.exit(0);
-    }
-
-    @FXML
     void welcomeTeacherUploadButtonPushed() {
         windowLoader("/fxml/Upload.fxml", "Upload");
         Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
         stage.close();
     }
-
+    
     @FXML
-    void welcomeTeacherUsersButtonPushed() {
-        windowLoader("/fxml/Teacher.fxml", "Add user");
+    void welcomeTeacherAddCoursePushed() {
+        windowLoader("/fxml/Teacher.fxml", "Add Student");
         Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    void welcomeTeacherAddStudentPushed() {
+        windowLoader("/fxml/Teacher.fxml", "Add Student");
+        Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
+    void welcomeTeacherLogoutButtonPushed() {
+        CurrentUser.logOut();
+        windowLoader("/fxml/Login.fxml", "Login");
+        Stage stage = (Stage) welcomeTeacherDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
+    void welcomeTeacherExitButtonPushed() {
+        System.exit(0);
     }
     //WELCOME TEACHER STOP
 }

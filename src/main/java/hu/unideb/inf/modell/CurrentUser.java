@@ -45,7 +45,7 @@ public class CurrentUser {
     }
     
     //Get the instance with a new user by username
-    public static synchronized CurrentUser getInstance(String username) {
+    public static synchronized CurrentUser logIn(String username) {
         if (instance == null) {
             instance = new CurrentUser(username);
         }else{
@@ -59,6 +59,11 @@ public class CurrentUser {
         if(!found){
             current = null;
         }
+    }
+    
+    public static synchronized CurrentUser logOut() {
+        instance = new CurrentUser();
+        return instance;
     }
 
     public User getCurrent() {

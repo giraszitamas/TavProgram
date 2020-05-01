@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.modell.CurrentUser;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -19,13 +20,6 @@ public class WelcomeSTUDENTController extends LoginController implements Initial
     //WELCOME STUDENT START
     @FXML
     private Button welcomeDownloadButton;
-    
-     @FXML
-    void welcomeLogoutButtonPushed() {
-        windowLoader("/fxml/Login.fxml", "Login");
-        Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
-        stage.close();
-    }
     
     @FXML
     void welcomeDownloadButtonPushed() {
@@ -49,6 +43,14 @@ public class WelcomeSTUDENTController extends LoginController implements Initial
     @FXML
     void studentCourseLogIn() {
         windowLoader("/fxml/CourseLogIn.fxml", "Course Log In");
+        Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
+    void welcomeLogoutButtonPushed() {
+        CurrentUser.logOut();
+        windowLoader("/fxml/Login.fxml", "Login");
         Stage stage = (Stage) welcomeDownloadButton.getScene().getWindow();
         stage.close();
     }

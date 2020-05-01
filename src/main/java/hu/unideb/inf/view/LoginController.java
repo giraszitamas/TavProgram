@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
     void loginLoginButtonPushed() {
         String username = loginUsername.getText();
         String password = loginPassword.getText();
-        User user = CurrentUser.getInstance(username).getCurrent();
+        User user = CurrentUser.logIn(username).getCurrent();
         if(user != null && password.equals(user.getCode())){
                 userMode = user.getType().toString();
                 windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
@@ -62,7 +62,7 @@ public class LoginController implements Initializable {
     }
     //LOGIN END
     
-    void windowLoader(String location, String title){
+    protected void windowLoader(String location, String title){
         try {
             Parent parent = FXMLLoader.load(getClass().getResource(location));
             Stage stage = new Stage(StageStyle.UNDECORATED);

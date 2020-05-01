@@ -28,27 +28,42 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="324.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeTeacherUploadButtonPushed">
+      <Text layoutX="125.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltés" />
+      <Button layoutX="241.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeTeacherUploadButtonPushed">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/upload.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+      </Button>
+      <Text layoutX="302.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés" />
+      <Button layoutX="415.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeTeacherAddCoursePushed">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/CourseAdd.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Text layoutX="446.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tárgy létrehozása" />
+      <Button layoutX="577.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeTeacherAddStudentPushed">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/profile.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Text layoutX="596.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hallgatók Adminisztrálása" />
       <Button layoutX="750.0" layoutY="14.0" mnemonicParsing="false" onAction="#welcomeTeacherExitButtonPushed">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/X.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button layoutX="569.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeTeacherUsersButtonPushed">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/profile.png" />
                </image>
             </ImageView>
          </graphic>
@@ -62,8 +77,5 @@
             </ImageView>
          </graphic>
       </Button>
-      <Text layoutX="125.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltés" />
-      <Text layoutX="385.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés" />
-      <Text layoutX="587.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hallgatók Adminisztrálása" />
    </children>
 </AnchorPane>
