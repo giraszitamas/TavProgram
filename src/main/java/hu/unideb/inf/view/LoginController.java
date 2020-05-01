@@ -6,6 +6,7 @@ import hu.unideb.inf.modell.CurrentUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,12 +18,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class LoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        
     }
     
     public String userMode;
@@ -69,9 +71,26 @@ public class LoginController implements Initializable {
             stage.setTitle(title);
             stage.setScene(new Scene(parent));
             stage.show();
-
+            stage.setOnCloseRequest(e -> handleExit(false, e));
         } catch (IOException e) {
             System.out.println(e);
+        }
+    }
+    
+    protected void handleExit(boolean stop, WindowEvent e){
+        if(!stop){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Cannot close the program!");
+            alert.setHeaderText("Please use the application's own exit button to close it.");
+            alert.showAndWait();
+            e.consume();
+        }
+    }
+    
+    protected void handleExit(boolean stop){
+        if(stop){
+            Platform.exit();
+            System.exit(0);
         }
     }
     

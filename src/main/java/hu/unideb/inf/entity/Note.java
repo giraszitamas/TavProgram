@@ -25,7 +25,7 @@ public class Note {
     @Column(unique = true, name = "note_id")
     private long id;
     
-    @Column(unique = false, name = "name")
+    @Column(unique = true, name = "name")
     private String name;
     
     @Column(unique = false, name = "value")

@@ -5,8 +5,6 @@ import hu.unideb.inf.entity.User;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.util.EduDAO;
 import hu.unideb.inf.util.JpaEduDAO;
-import hu.unideb.inf.util.JpaUserDAO;
-import hu.unideb.inf.util.UserDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -24,7 +22,13 @@ public class AddCourseController extends LoginController implements Initializabl
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+       //Load courses
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
+        createdCourses.forEach((course) -> {
+            list.add(course);
+        });
+        courseList.setItems(list);
     }
     
     @FXML
@@ -37,25 +41,47 @@ public class AddCourseController extends LoginController implements Initializabl
     private TextField newCourseCode;
 
     @FXML
-    private Button uploadBackButton;
+    private Button addCourseBackButton;
 
     @FXML
-    void courseLoadPushed(ActionEvent event) {
-
+    void courseLoadPushed() {
+        //Load courses
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
+        createdCourses.forEach((course) -> {
+            list.add(course);
+        });
+        courseList.setItems(list);
     }
 
     @FXML
-    void uploadBackButtonPushed(ActionEvent event) {
-
+    void saveCoursePushed() {
+        //Create new course
+        String name = newCourseName.getText();
+        String code = newCourseCode.getText();
+        User user = CurrentUser.getInstance().getCurrent();
+        Course newCourse = new Course(name, code,user.getId());
+        //Save the new course
+        try(EduDAO cDAO = new JpaEduDAO<Course>()){
+            cDAO.save(newCourse);
+        }
+        //Update the user as the main teacher
+        user.addCourse(newCourse);
+        try(EduDAO uDAO = new JpaEduDAO<User>()){
+            uDAO.update(user);
+        }
+    }
+    
+    @FXML
+    void addCourseBackButtonPushed() {
+        userMode = CurrentUser.getInstance().getCurrent().getType().toString();
+        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
+        Stage stage = (Stage) addCourseBackButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    void uploadExitButtonPushed(ActionEvent event) {
-
-    }
-
-    @FXML
-    void uploadUploadButton(ActionEvent event) {
-
+    void uploadExitButtonPushed() {
+        handleExit(true);
     }
 }

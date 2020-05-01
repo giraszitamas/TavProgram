@@ -68,7 +68,7 @@ public class DownloadController extends LoginController implements Initializable
 
     @FXML
     void downloadExitButtonPushed() {
-        System.exit(0);
+        handleExit(true);
     }
 
     @FXML

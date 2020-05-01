@@ -29,7 +29,7 @@ public class WelcomeADMINController extends LoginController implements Initializ
 
     @FXML
     void welcomeAdminExitButtonPushed() {
-        System.exit(0);
+        handleExit(true);
     }
 
     @FXML

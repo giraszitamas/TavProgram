@@ -119,6 +119,6 @@ public class AddStudentController extends LoginController implements Initializab
 
     @FXML
     void teacherExitButtonPushed() {
-        System.exit(0);
+        handleExit(true);
     }
 }

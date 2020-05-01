@@ -15,6 +15,7 @@ public interface UserDAO extends AutoCloseable {
     
     public User getByUsername(String name);
     public User getById(long id);
+    //Feeled like we will need it, but now not sure. The normal update started working
     public boolean addCourse(long courseId);
     
     @Override

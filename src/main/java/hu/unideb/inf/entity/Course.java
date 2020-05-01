@@ -51,7 +51,7 @@ public class Course implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"))
     private Set<User> users = new HashSet<>();
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "course_id")
     private Set<Note> notes = new HashSet<Note>();
     
@@ -61,6 +61,12 @@ public class Course implements Serializable {
     public Course(String name, String code) {
         this.name = name;
         this.code = code;
+    }
+    
+    public Course(String name, String code, long responsibleId) {
+        this.name = name;
+        this.code = code;
+        this.responsibleId = responsibleId;
     }
 
     public String getName() {

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.UploadController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.AddCourseController">
    <children>
       <Text layoutX="241.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tárgy létrehozása">
          <font>
@@ -40,8 +40,8 @@
          </font>
       </Text>
       <TextField fx:id="newCourseCode" layoutX="551.0" layoutY="206.0" prefHeight="25.0" prefWidth="200.0" />
-      <Button layoutX="614.0" layoutY="273.0" mnemonicParsing="false" onAction="#uploadUploadButton" text="Létrehozás" />
-      <Button fx:id="uploadBackButton" layoutX="586.0" layoutY="492.0" mnemonicParsing="false" onAction="#uploadBackButtonPushed" prefHeight="44.0" prefWidth="130.0" text="Vissza" />
+      <Button layoutX="614.0" layoutY="273.0" mnemonicParsing="false" onAction="#saveCoursePushed" text="Létrehozás" />
+      <Button fx:id="addCourseBackButton" layoutX="586.0" layoutY="492.0" mnemonicParsing="false" onAction="#addCourseBackButtonPushed" prefHeight="44.0" prefWidth="130.0" text="Vissza" />
       <Button layoutX="750.0" layoutY="14.0" mnemonicParsing="false" onAction="#uploadExitButtonPushed" prefHeight="25.0" prefWidth="27.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">

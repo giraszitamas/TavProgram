@@ -96,7 +96,7 @@ public class CourseLogInController extends LoginController implements Initializa
 
     @FXML
     void courseLogInExitButtonPushed() {
-        System.exit(0);
+        handleExit(true);
     }
     //COURSE LOG IN END
 }

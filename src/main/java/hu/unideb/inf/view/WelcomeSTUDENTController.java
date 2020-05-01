@@ -30,7 +30,7 @@ public class WelcomeSTUDENTController extends LoginController implements Initial
 
     @FXML
     void welcomeExitButtonPushed() {
-        System.exit(0);
+        handleExit(true);
     }
 
     @FXML

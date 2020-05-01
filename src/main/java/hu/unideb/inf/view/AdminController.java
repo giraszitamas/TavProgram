@@ -107,13 +107,9 @@ public class AdminController extends LoginController implements Initializable {
     
     @FXML
     void adminAddExitButtonPushed() {
-        System.exit(0);
+        handleExit(true);
     }
     //ADD END
     
-    @FXML
-    void adminExitButtonPushed() {
-        System.exit(0);
-    }
     //ADMIN END
 }

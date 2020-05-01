@@ -2,6 +2,7 @@ package hu.unideb.inf.view;
 
 import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.Note;
+import hu.unideb.inf.entity.User;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
 import hu.unideb.inf.util.EduDAO;
@@ -9,6 +10,7 @@ import hu.unideb.inf.util.JpaEduDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class UploadController extends LoginController implements Initializable {
     
@@ -53,6 +56,7 @@ public class UploadController extends LoginController implements Initializable {
 
     @FXML
     void uploadBackButtonPushed() {
+        saveChanges();
         userMode = CurrentUser.getInstance().getCurrent().getType().toString();
         windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
         Stage stage = (Stage) uploadBackButton.getScene().getWindow();
@@ -71,7 +75,8 @@ public class UploadController extends LoginController implements Initializable {
 
     @FXML
     void uploadExitButtonPushed() {
-        System.exit(0);
+        saveChanges();
+        handleExit(true);
     }
 
     @FXML
@@ -84,10 +89,20 @@ public class UploadController extends LoginController implements Initializable {
         Note newNote = new Note(name, value);
         course.addNote(newNote);
         //Save this new note
-        EduDAO nDAO = new JpaEduDAO<Note>();
-        EduDAO cDAO = new JpaEduDAO<Course>();
-        cDAO.update(course);
-        nDAO.close();
-        cDAO.close();
+        try(EduDAO nDAO = new JpaEduDAO<Note>()){
+            nDAO.save(newNote);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    void saveChanges(){
+        try(EduDAO cDAO = new JpaEduDAO<Course>()){
+            for(var c : CurrentUser.getInstance().getCurrent().getCourses()){
+                cDAO.save(c);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }

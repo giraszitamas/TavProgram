@@ -57,7 +57,7 @@ public class WelcomeTEACHERController extends LoginController implements Initial
     
     @FXML
     void welcomeTeacherExitButtonPushed() {
-        System.exit(0);
+        handleExit(true);
     }
     //WELCOME TEACHER STOP
 }

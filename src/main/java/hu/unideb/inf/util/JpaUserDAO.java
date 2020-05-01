@@ -50,14 +50,8 @@ public class JpaUserDAO implements UserDAO{
     }
 
     @Override
+    //Feeled like we will need it, but now not sure. The normal update started working
     public boolean addCourse(long courseId) {
-//        String hql = "INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)\n" +
-//"VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');"
-//                + "SELECT user FROM hu.unideb.inf.entity.User user WHERE user.id=:id";
-//        Query query = session.createQuery(hql);
-//        query.setParameter("id", id);
-//        User user = (User)query.uniqueResult();
-        return true;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
