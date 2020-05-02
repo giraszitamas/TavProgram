@@ -1,18 +1,14 @@
 package hu.unideb.inf.view;
 
-import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.User;
 import hu.unideb.inf.entity.User.userType;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.util.EduDAO;
-import hu.unideb.inf.util.HibernateUtil;
 import hu.unideb.inf.util.JpaEduDAO;
 import hu.unideb.inf.util.JpaUserDAO;
-import hu.unideb.inf.util.UserDAO;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,9 +18,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class AdminController extends LoginController implements Initializable {
 
