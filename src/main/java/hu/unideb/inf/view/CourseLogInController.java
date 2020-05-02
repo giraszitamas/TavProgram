@@ -47,7 +47,7 @@ public class CourseLogInController extends LoginController implements Initializa
         var theChosenOne = CurrentUser.getInstance().getCurrent();
         if(code.equals(course.getCode())){
             theChosenOne.addCourse(course);
-            try(EduDAO uDao = new JpaEduDAO<User>()){
+            try(EduDAO<User> uDao = new JpaEduDAO<>()){
                 uDao.update(theChosenOne);
             }
         }else{
@@ -71,7 +71,7 @@ public class CourseLogInController extends LoginController implements Initializa
         //Get all courses
         ObservableList<Course> list = FXCollections.observableArrayList();
         List<Course> courses;
-        try(EduDAO cDao = new JpaEduDAO<Course>()){
+        try(EduDAO<Course> cDao = new JpaEduDAO<>()){
             courses = cDao.getData(Course.class);
         }
         for(var course : courses){

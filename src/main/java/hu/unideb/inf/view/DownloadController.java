@@ -4,7 +4,6 @@ import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.Note;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.util.EduDAO;
-import hu.unideb.inf.util.HibernateUtil;
 import hu.unideb.inf.util.JpaEduDAO;
 import java.net.URL;
 import java.util.List;
@@ -19,9 +18,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class DownloadController extends LoginController implements Initializable {
     
@@ -65,7 +61,7 @@ public class DownloadController extends LoginController implements Initializable
         //All if admin
         if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
             List<Course> courses;
-            try(EduDAO cDao = new JpaEduDAO<Course>()){
+            try(EduDAO<Course> cDao = new JpaEduDAO<>()){
                 courses = cDao.getData(Course.class);
             }
             courses.forEach((course) -> {

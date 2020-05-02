@@ -6,13 +6,11 @@ import hu.unideb.inf.entity.User;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
 import hu.unideb.inf.util.EduDAO;
-import hu.unideb.inf.util.HibernateUtil;
 import hu.unideb.inf.util.JpaEduDAO;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -67,7 +65,7 @@ public class UploadController extends LoginController implements Initializable {
         //All if admin
         if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
             List<Course> courses;
-            try(EduDAO cDao = new JpaEduDAO<Course>()){
+            try(EduDAO<Course> cDao = new JpaEduDAO<>()){
                 courses = cDao.getData(Course.class);
             }
             courses.forEach((course) -> {
@@ -101,13 +99,13 @@ public class UploadController extends LoginController implements Initializable {
         Note newNote = new Note(name, value);
         course.addNote(newNote);
         //Save this new note
-        try(EduDAO nDAO = new JpaEduDAO<Note>()){
+        try(EduDAO<Note> nDAO = new JpaEduDAO<>()){
             nDAO.save(newNote);
         }catch(Exception e){
             System.out.println(e);
         }
         if(user.getType().toString().equals("ADMIN")){
-            try(EduDAO cDAO = new JpaEduDAO<Course>()){
+            try(EduDAO<Course> cDAO = new JpaEduDAO<>()){
                 cDAO.update(course);
             }
             //REEEEEEload courses
@@ -117,7 +115,7 @@ public class UploadController extends LoginController implements Initializable {
     
     void saveChanges(){
         User user = CurrentUser.getInstance().getCurrent();
-        try(EduDAO cDAO = new JpaEduDAO<Course>()){
+        try(EduDAO<Course> cDAO = new JpaEduDAO<>()){
             if(user.getType().toString().equals("ADMIN")){
                 var courses = cDAO.getData(Course.class);
                 courses.forEach((c) -> {

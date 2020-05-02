@@ -64,13 +64,13 @@ public class AddCourseController extends LoginController implements Initializabl
         //Save the new course
         user.addCourse(newCourse);
         newCourse.addUser(user);
-        try(EduDAO cDAO = new JpaEduDAO<Course>()){
+        try(EduDAO<Course> cDAO = new JpaEduDAO<>()){
             cDAO.save(newCourse);
         }catch(Exception e){
             System.out.println(e);
         }
         //Update the user as the main teacher
-        try(EduDAO uDAO = new JpaEduDAO<User>()){
+        try(EduDAO<User> uDAO = new JpaEduDAO<>()){
             uDAO.update(user);
         }catch(Exception e){
             System.out.println(e);

@@ -71,7 +71,7 @@ public class AddStudentController extends LoginController implements Initializab
         selectedUser.addCourse(c);
         c.addUser(selectedUser);
         //Update the database
-        EduDAO uDAO = new JpaEduDAO<User>();
+        EduDAO<User> uDAO = new JpaEduDAO<>();
         try{
             uDAO.update(selectedUser);
         }catch(Exception e){

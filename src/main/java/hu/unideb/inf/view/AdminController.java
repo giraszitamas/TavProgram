@@ -100,7 +100,7 @@ public class AdminController extends LoginController implements Initializable {
         );
 
         //newUsr.addCourse(targy);
-        try (EduDAO uDAO = new JpaEduDAO<User>()) {
+        try (EduDAO<User> uDAO = new JpaEduDAO<>()) {
             uDAO.save(newUsr);
         }
         System.out.println(newUsr.toString());
@@ -181,7 +181,7 @@ public class AdminController extends LoginController implements Initializable {
     @FXML
     void updateButtonPushed() {
         if (canEdit) {
-            try (JpaEduDAO updateForEditing = new JpaEduDAO()) {
+            try (JpaEduDAO<User> updateForEditing = new JpaEduDAO<>()) {
                 final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
                 underEditUser.setBirthDate(LocalDate.parse(adminEditBirthDate.getText()));
                 underEditUser.setFirstName(adminEditFirstName.getText());
@@ -192,7 +192,7 @@ public class AdminController extends LoginController implements Initializable {
                 if(adminEditisAdmin.isSelected())underEditUser.setType(User.userType.ADMIN);
                 else if(adminEditisTeacher.isSelected())underEditUser.setType(User.userType.TEACHER);
                 else if(adminEditisStudent.isSelected())underEditUser.setType(User.userType.STUDENT);
-                
+                //Save the updated user
                 updateForEditing.update(underEditUser);
             }
         } else {
@@ -209,7 +209,7 @@ public class AdminController extends LoginController implements Initializable {
     @FXML
     void deleteButtonPushed() {
         if (canEdit) {
-            try (JpaEduDAO updateForEditing = new JpaEduDAO()) {
+            try (JpaEduDAO<User> updateForEditing = new JpaEduDAO<>()) {
                 updateForEditing.delete(underEditUser);
             }
         } else {
