@@ -6,8 +6,10 @@ import hu.unideb.inf.entity.User;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.modell.Simulation;
 import hu.unideb.inf.util.EduDAO;
+import hu.unideb.inf.util.HibernateUtil;
 import hu.unideb.inf.util.JpaEduDAO;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.application.Platform;
@@ -21,16 +23,34 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class UploadController extends LoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Course> list = FXCollections.observableArrayList();
+        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
+            Session session;
+            Transaction transaction;
+            session = HibernateUtil.getSessionFactory().openSession();
+            Course asd;
+            var hql = "FROM Course";
+            Query query = session.createQuery(hql);
+            List<Course> tar = query.list();
+            for (int i = 0; i < tar.size(); i++) {
+                list.add(tar.get(i));
+
+        }
+        }
+        else{
         Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
         createdCourses.forEach((course) -> {
             list.add(course);
         });
+        }
         uploadCourseList.setItems(list);
     }
 

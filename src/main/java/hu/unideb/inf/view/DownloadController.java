@@ -3,7 +3,9 @@ package hu.unideb.inf.view;
 import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.Note;
 import hu.unideb.inf.modell.CurrentUser;
+import hu.unideb.inf.util.HibernateUtil;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -15,6 +17,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class DownloadController extends LoginController implements Initializable {
     
@@ -23,10 +28,25 @@ public class DownloadController extends LoginController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         //Load the user's courses - Test if this works
         ObservableList<Course> list = FXCollections.observableArrayList();
+        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
+            Session session;
+            Transaction transaction;
+            session = HibernateUtil.getSessionFactory().openSession();
+            Course asd;
+            var hql = "FROM Course";
+            Query query = session.createQuery(hql);
+            List<Course> tar = query.list();
+            for (int i = 0; i < tar.size(); i++) {
+                list.add(tar.get(i));
+
+        }
+        }
+        else{
         Set<Course> courses = CurrentUser.getInstance().getCurrent().getCourses();
         for(var course : courses){
             list.add(course);
         }       
+        }
         downloadCourseList.setItems(list);
     }
     
