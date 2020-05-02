@@ -203,6 +203,9 @@ public class AdminController extends LoginController implements Initializable {
         }
 
     }
+    //
+    //
+    //ALma
     @FXML
     void deleteButtonPushed() {
         if (canEdit) {
