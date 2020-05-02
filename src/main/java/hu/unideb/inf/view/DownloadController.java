@@ -3,7 +3,9 @@ package hu.unideb.inf.view;
 import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.Note;
 import hu.unideb.inf.modell.CurrentUser;
+import hu.unideb.inf.util.EduDAO;
 import hu.unideb.inf.util.HibernateUtil;
+import hu.unideb.inf.util.JpaEduDAO;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,28 +28,8 @@ public class DownloadController extends LoginController implements Initializable
     //DOWNLOAD START
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Load the user's courses - Test if this works
-        ObservableList<Course> list = FXCollections.observableArrayList();
-        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
-            Session session;
-            Transaction transaction;
-            session = HibernateUtil.getSessionFactory().openSession();
-            Course asd;
-            var hql = "FROM Course";
-            Query query = session.createQuery(hql);
-            List<Course> tar = query.list();
-            for (int i = 0; i < tar.size(); i++) {
-                list.add(tar.get(i));
-
-        }
-        }
-        else{
-        Set<Course> courses = CurrentUser.getInstance().getCurrent().getCourses();
-        for(var course : courses){
-            list.add(course);
-        }       
-        }
-        downloadCourseList.setItems(list);
+        //Load course
+        downloadCourseOpenButtonPushed();
     }
     
     @FXML
@@ -78,10 +60,24 @@ public class DownloadController extends LoginController implements Initializable
 
     @FXML
     void downloadCourseOpenButtonPushed() {
+        //Load courses
         ObservableList<Course> list = FXCollections.observableArrayList();
-        Set<Course> courses = CurrentUser.getInstance().getCurrent().getCourses();
-        for(var course : courses){
-            list.add(course);
+        //All if admin
+        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
+            List<Course> courses;
+            try(EduDAO cDao = new JpaEduDAO<Course>()){
+                courses = cDao.getData(Course.class);
+            }
+            courses.forEach((course) -> {
+                list.add(course);
+            });
+        }
+        //Only the allowed ones if normal user
+        else{
+            Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
+            createdCourses.forEach((course) -> {
+                list.add(course);
+            });
         }
         downloadCourseList.setItems(list);
     }

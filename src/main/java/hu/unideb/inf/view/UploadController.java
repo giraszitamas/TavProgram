@@ -22,36 +22,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class UploadController extends LoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<Course> list = FXCollections.observableArrayList();
-        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
-            Session session;
-            Transaction transaction;
-            session = HibernateUtil.getSessionFactory().openSession();
-            Course asd;
-            var hql = "FROM Course";
-            Query query = session.createQuery(hql);
-            List<Course> tar = query.list();
-            for (int i = 0; i < tar.size(); i++) {
-                list.add(tar.get(i));
-
-        }
-        }
-        else{
-        Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
-        createdCourses.forEach((course) -> {
-            list.add(course);
-        });
-        }
-        uploadCourseList.setItems(list);
+        //Load courses
+        uploadCourseOpenButtonPushed();
     }
 
     @FXML
@@ -85,11 +62,25 @@ public class UploadController extends LoginController implements Initializable {
 
     @FXML
     void uploadCourseOpenButtonPushed() {
+        //Load courses
         ObservableList<Course> list = FXCollections.observableArrayList();
-        Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
-        createdCourses.forEach((course) -> {
-            list.add(course);
-        });
+        //All if admin
+        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
+            List<Course> courses;
+            try(EduDAO cDao = new JpaEduDAO<Course>()){
+                courses = cDao.getData(Course.class);
+            }
+            courses.forEach((course) -> {
+                list.add(course);
+            });
+        }
+        //Only the allowed ones if normal user
+        else{
+            Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
+            createdCourses.forEach((course) -> {
+                list.add(course);
+            });
+        }
         uploadCourseList.setItems(list);
     }
 
@@ -102,6 +93,7 @@ public class UploadController extends LoginController implements Initializable {
     @FXML
     void uploadUploadButton() {
         //Get data
+        User user = CurrentUser.getInstance().getCurrent();
         String name = uploadFileName.getText();
         String value = uploadLink.getText();
         Course course = uploadCourseList.getSelectionModel().getSelectedItem();
@@ -114,12 +106,28 @@ public class UploadController extends LoginController implements Initializable {
         }catch(Exception e){
             System.out.println(e);
         }
+        if(user.getType().toString().equals("ADMIN")){
+            try(EduDAO cDAO = new JpaEduDAO<Course>()){
+                cDAO.update(course);
+            }
+            //REEEEEEload courses
+            uploadCourseOpenButtonPushed();
+        }
     }
     
     void saveChanges(){
+        User user = CurrentUser.getInstance().getCurrent();
         try(EduDAO cDAO = new JpaEduDAO<Course>()){
-            for(var c : CurrentUser.getInstance().getCurrent().getCourses()){
-                cDAO.update(c);
+            if(user.getType().toString().equals("ADMIN")){
+                var courses = cDAO.getData(Course.class);
+                courses.forEach((c) -> {
+                    cDAO.update(c);
+                });
+            }else{
+                var courses = user.getCourses();
+                courses.forEach((c) -> {
+                    cDAO.update(c);
+                });
             }
         }catch(Exception e){
             System.out.println(e);
