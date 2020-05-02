@@ -7,19 +7,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.WelcomeSTUDENTController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #a6f0ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.WelcomeSTUDENTController">
    <children>
-      <Text layoutX="336.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!">
+      <ImageView fitHeight="220.0" fitWidth="317.0" layoutX="261.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/neptun.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/border.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="34.0" layoutY="300.0" prefHeight="220.0" prefWidth="732.0" style="-fx-background-color: #32badb; -fx-opacity: 0.8; -fx-background-radius: 30; -fx-border-color: #004ca3; -fx-border-radius: 30;" />
+      <Text layoutX="332.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Text layoutX="230.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mit szeretne csinálni?">
+      <Text layoutX="230.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mit szeretne csinálni?">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Button fx:id="welcomeDownloadButton" layoutX="63.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeDownloadButtonPushed">
+      <Button fx:id="welcomeDownloadButton" layoutX="80.0" layoutY="327.0" mnemonicParsing="false" onAction="#welcomeDownloadButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -28,15 +39,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="324.0" layoutY="271.0" mnemonicParsing="false" onAction="#welcomeUploadButtonPushed">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/upload.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button layoutX="750.0" layoutY="14.0" mnemonicParsing="false" onAction="#welcomeExitButtonPushed">
+      <Button layoutX="716.0" layoutY="42.0" mnemonicParsing="false" onAction="#welcomeExitButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +47,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="750.0" layoutY="53.0" mnemonicParsing="false" onAction="#welcomeLogoutButtonPushed">
+      <Button layoutX="718.0" layoutY="80.0" mnemonicParsing="false" onAction="#welcomeLogoutButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -53,7 +56,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="569.0" layoutY="271.0" mnemonicParsing="false" onAction="#studentCourseLogIn" prefHeight="158.0" prefWidth="166.0">
+      <Button layoutX="568.0" layoutY="327.0" mnemonicParsing="false" onAction="#studentCourseLogIn" prefHeight="158.0" prefWidth="166.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -61,8 +64,17 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Text layoutX="125.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltés" />
-      <Text layoutX="385.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés" />
-      <Text layoutX="618.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tárgyfelvétel" />
+      <Text layoutX="144.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltés" />
+      <Text layoutX="385.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés" />
+      <Text layoutX="617.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tárgyfelvétel" />
+      <Button layoutX="321.0" layoutY="327.0" mnemonicParsing="false" onAction="#welcomeUploadButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/upload.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

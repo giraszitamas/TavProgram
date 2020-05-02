@@ -26,7 +26,7 @@ public class DownloadController extends LoginController implements Initializable
         Set<Course> courses = CurrentUser.getInstance().getCurrent().getCourses();
         for(var course : courses){
             list.add(course);
-        }
+        }       
         downloadCourseList.setItems(list);
     }
     
