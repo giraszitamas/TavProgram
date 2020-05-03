@@ -9,14 +9,17 @@ import hu.unideb.inf.util.JpaUserDAO;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class AdminController extends LoginController implements Initializable {
@@ -57,7 +60,8 @@ public class AdminController extends LoginController implements Initializable {
 
     @FXML
     private Button adminAddBackButton;
-
+    @FXML
+    private Label adminAddisSuccessfull;
     /*void addUser(userType tipus){
         newUsr = new User(tipus, 
                         username.getText(), 
@@ -101,7 +105,9 @@ public class AdminController extends LoginController implements Initializable {
 
         //newUsr.addCourse(targy);
         try (EduDAO<User> uDAO = new JpaEduDAO<>()) {
-            uDAO.save(newUsr);
+            if(uDAO.save(newUsr))
+                adminAddisSuccessfull.setText("Sikeresen hozzá lett adva!");
+            else adminAddisSuccessfull.setText("Sikertelen hozzáadás!");
         }
         System.out.println(newUsr.toString());
 
@@ -143,6 +149,9 @@ public class AdminController extends LoginController implements Initializable {
 
     @FXML
     private TextField serachForEditing;
+    
+    @FXML
+    private Text adminEditIsSuccessfull;
 
     boolean canEdit = false;
     User underEditUser;
@@ -174,10 +183,15 @@ public class AdminController extends LoginController implements Initializable {
                 default:
                     break;
             }
-
+            /*List<User> tar = getterForEdit.getByPartUsername("ma");
+            for (User tar1 : tar) {
+                System.out.println(tar1.toString());
+            }*/
         }
+        
     }
 //userType type, String username, String FirstName, String LastName, LocalDate birthDate, String email, String code
+    // Ne csak id alapján
     @FXML
     void updateButtonPushed() {
         if (canEdit) {
@@ -193,7 +207,10 @@ public class AdminController extends LoginController implements Initializable {
                 else if(adminEditisTeacher.isSelected())underEditUser.setType(User.userType.TEACHER);
                 else if(adminEditisStudent.isSelected())underEditUser.setType(User.userType.STUDENT);
                 //Save the updated user
-                updateForEditing.update(underEditUser);
+                if(updateForEditing.update(underEditUser))
+                    adminEditIsSuccessfull.setText("Sikeres szerkesztés!");
+                else adminEditIsSuccessfull.setText("Sikeretlen szerkesztés!");
+
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -209,8 +226,10 @@ public class AdminController extends LoginController implements Initializable {
     @FXML
     void deleteButtonPushed() {
         if (canEdit) {
-            try (JpaEduDAO<User> updateForEditing = new JpaEduDAO<>()) {
-                updateForEditing.delete(underEditUser);
+            try (EduDAO<User> updateForEditing = new JpaEduDAO<User>()) {
+                if(updateForEditing.delete(underEditUser))
+                    adminEditIsSuccessfull.setText("Sikeres törlés!");
+                else adminEditIsSuccessfull.setText("Sikeretlen törlés!");
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

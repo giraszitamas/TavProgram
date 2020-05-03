@@ -6,6 +6,7 @@
 package hu.unideb.inf.util;
 
 import hu.unideb.inf.entity.User;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -48,10 +49,10 @@ public class JpaUserDAO implements UserDAO{
         User user = (User)query.uniqueResult();
         return user;
     }
-
     @Override
-    //Feeled like we will need it, but now not sure. The normal update started working
-    public boolean addCourse(long courseId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<User> getByPartUsername(String PartName){
+        String hql = "SELECT user FROM hu.unideb.inf.entity.User user WHERE user.username LIKE '%"+PartName+"%'";
+        Query query = session.createQuery(hql);
+        return query.list();
     }
 }

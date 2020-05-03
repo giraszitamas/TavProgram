@@ -6,6 +6,7 @@
 package hu.unideb.inf.util;
 
 import hu.unideb.inf.entity.User;
+import java.util.List;
 
 /**
  *
@@ -15,8 +16,7 @@ public interface UserDAO extends AutoCloseable {
     
     public User getByUsername(String name);
     public User getById(long id);
-    //Feeled like we will need it, but now not sure. The normal update started working
-    public boolean addCourse(long courseId);
+    public List<User> getByPartUsername(String PartName);
     
     @Override
     default public void close() {

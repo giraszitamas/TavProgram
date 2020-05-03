@@ -32,7 +32,7 @@ public class JpaEduDAO<T> implements EduDAO<T>{
     }
     
     @Override
-    public void save(T obj){
+    public boolean save(T obj){
         try{
             transaction = session.beginTransaction();
             session.save(obj);
@@ -42,11 +42,13 @@ public class JpaEduDAO<T> implements EduDAO<T>{
                 transaction.rollback();
             }
             System.out.println(e);
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void delete(T obj) {
+    public boolean delete(T obj) {
         try{
             transaction = session.beginTransaction();
             session.remove(obj);
@@ -56,11 +58,13 @@ public class JpaEduDAO<T> implements EduDAO<T>{
                 transaction.rollback();
             }
             System.out.println(e);
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void update(T obj) {
+    public boolean update(T obj) {
         try{
             transaction = session.beginTransaction();
             session.update(obj);
@@ -70,7 +74,9 @@ public class JpaEduDAO<T> implements EduDAO<T>{
                 transaction.rollback();
             }
             System.out.println(e);
+            return false;
         }
+        return true;
     }
 
     @Override
