@@ -20,12 +20,12 @@
          </image>
       </ImageView>
       <AnchorPane layoutX="34.0" layoutY="300.0" prefHeight="220.0" prefWidth="732.0" style="-fx-background-color: #32badb; -fx-opacity: 0.8; -fx-background-radius: 30; -fx-border-color: #004ca3; -fx-border-radius: 30;" />
-      <Text layoutX="332.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!">
+      <Text fx:id="welcomeStudentText" layoutX="48.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" style="text: center;" text="Üdv újra!" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="702.19140625" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="49.80859375">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Text layoutX="230.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mit szeretne csinálni?">
+      <Text layoutX="230.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mit szeretne csinálni?" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.654296875">
          <font>
             <Font size="36.0" />
          </font>

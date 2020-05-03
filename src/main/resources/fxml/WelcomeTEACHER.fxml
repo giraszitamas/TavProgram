@@ -21,7 +21,7 @@
          </image>
       </ImageView>
       <AnchorPane layoutX="34.0" layoutY="300.0" prefHeight="220.0" prefWidth="732.0" style="-fx-background-color: #32badb; -fx-opacity: 0.8; -fx-background-radius: 30; -fx-border-color: #004ca3; -fx-border-radius: 30;" />
-      <Text layoutX="332.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!">
+      <Text fx:id="welcomeTeacherText" layoutX="48.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!" textAlignment="CENTER" wrappingWidth="702.19140625">
          <font>
             <Font size="36.0" />
          </font>

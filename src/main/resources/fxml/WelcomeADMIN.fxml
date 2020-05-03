@@ -20,7 +20,7 @@
             <Image url="@../icons/border.png" />
          </image>
       </ImageView>
-      <Text layoutX="332.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!">
+      <Text fx:id="welcomeAdminText" layoutX="48.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Üdv újra!" textAlignment="CENTER" wrappingWidth="702.19140625">
          <font>
             <Font size="36.0" />
          </font>

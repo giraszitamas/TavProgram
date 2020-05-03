@@ -6,19 +6,23 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class WelcomeADMINController extends LoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        welcomeAdminText.setText("Üdv újra, " + CurrentUser.getInstance().getCurrent().getLastName().toString()+ "!");
     }
     
     
     //WELCOME ADMIN START
     @FXML
     private Button welcomeAdminDownloadButton;
+    
+    @FXML
+    private Text welcomeAdminText;
     
     @FXML
     void welcomeAdminDownloadButtonPushed() {

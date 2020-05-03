@@ -10,9 +10,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.UploadController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #a6f0ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.UploadController">
    <children>
-      <Button layoutX="750.0" layoutY="14.0" mnemonicParsing="false" onAction="#uploadExitButtonPushed" prefHeight="25.0" prefWidth="27.0">
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/border.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="716.0" layoutY="42.0" mnemonicParsing="false" onAction="#uploadExitButtonPushed" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -21,29 +26,29 @@
             </ImageView>
          </graphic>
       </Button>
-      <Text layoutX="155.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válaszon egy tárgyat!">
+      <Text layoutX="155.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válaszon egy tárgyat!">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <ListView fx:id="uploadCourseList" layoutX="50.0" layoutY="120.0" prefHeight="373.0" prefWidth="451.0" />
-      <Button layoutX="240.0" layoutY="524.0" mnemonicParsing="false" onAction="#uploadCourseOpenButtonPushed" text="Megnyitás" />
-      <Button layoutX="120.0" layoutY="524.0" mnemonicParsing="false" onAction="#simulationPushed" text="Szimulálás" />
-      <TextArea fx:id="uploadLink" layoutX="551.0" layoutY="120.0" prefHeight="136.0" prefWidth="200.0" />
-      <Text layoutX="596.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltési link">
+      <ListView fx:id="uploadCourseList" layoutX="50.0" layoutY="147.0" prefHeight="325.0" prefWidth="451.0" />
+      <Button layoutX="239.0" layoutY="489.0" mnemonicParsing="false" onAction="#uploadCourseOpenButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Megnyitás" />
+      <Button layoutX="39.0" layoutY="39.0" mnemonicParsing="false" onAction="#simulationPushed" style="-fx-opacity: 0;" text="Szimulálás" />
+      <TextArea fx:id="uploadLink" layoutX="553.0" layoutY="147.0" prefHeight="136.0" prefWidth="200.0" />
+      <Text layoutX="597.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltési link">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="uploadBackButton" layoutX="586.0" layoutY="492.0" mnemonicParsing="false" onAction="#uploadBackButtonPushed" prefHeight="44.0" prefWidth="130.0" text="Vissza" />
-      <Text layoutX="604.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nevezze el">
+      <Button fx:id="uploadBackButton" layoutX="586.0" layoutY="480.0" mnemonicParsing="false" onAction="#uploadBackButtonPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Vissza" />
+      <Text layoutX="604.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nevezze el">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="uploadFileName" layoutX="551.0" layoutY="313.0" prefHeight="25.0" prefWidth="200.0" />
-      <Button layoutX="621.0" layoutY="354.0" mnemonicParsing="false" onAction="#uploadUploadButton" text="Feltöltés" />
-      <Text layoutX="324.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés">
+      <TextField fx:id="uploadFileName" layoutX="551.0" layoutY="340.0" prefHeight="25.0" prefWidth="200.0" />
+      <Button layoutX="620.0" layoutY="383.0" mnemonicParsing="false" onAction="#uploadUploadButton" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Feltöltés" />
+      <Text layoutX="329.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés">
          <font>
             <Font size="41.0" />
          </font>
