@@ -24,7 +24,15 @@ public class CourseLogInController extends LoginController implements Initializa
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        List<Course> courses;
+        try(EduDAO<Course> cDao = new JpaEduDAO<>()){
+            courses = cDao.getData(Course.class);
+        }
+        for(var course : courses){
+            list.add(course);
+        }
+        foundCourse.setItems(list);
     }
     
     //COURSE ADD
@@ -66,19 +74,6 @@ public class CourseLogInController extends LoginController implements Initializa
         stage.close();
     }
     
-    @FXML
-    void searchShowAllPushed() {
-        //Get all courses
-        ObservableList<Course> list = FXCollections.observableArrayList();
-        List<Course> courses;
-        try(EduDAO<Course> cDao = new JpaEduDAO<>()){
-            courses = cDao.getData(Course.class);
-        }
-        for(var course : courses){
-            list.add(course);
-        }
-        foundCourse.setItems(list);
-    }
 
     @FXML
     void searchCoursePushed() {

@@ -56,6 +56,5 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="246.0" layoutY="501.0" mnemonicParsing="false" onAction="#searchShowAllPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Listázás" />
    </children>
 </AnchorPane>

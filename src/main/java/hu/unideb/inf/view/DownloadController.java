@@ -24,8 +24,26 @@ public class DownloadController extends LoginController implements Initializable
     //DOWNLOAD START
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Load course
-        downloadCourseOpenButtonPushed();
+        //Load courses
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        //All if admin
+        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
+            List<Course> courses;
+            try(EduDAO<Course> cDao = new JpaEduDAO<>()){
+                courses = cDao.getData(Course.class);
+            }
+            courses.forEach((course) -> {
+                list.add(course);
+            });
+        }
+        //Only the allowed ones if normal user
+        else{
+            Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
+            createdCourses.forEach((course) -> {
+                list.add(course);
+            });
+        }
+        downloadCourseList.setItems(list);
     }
     
     @FXML
@@ -52,30 +70,6 @@ public class DownloadController extends LoginController implements Initializable
         windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
         Stage stage = (Stage) downloadBackButton.getScene().getWindow();
         stage.close();
-    }
-
-    @FXML
-    void downloadCourseOpenButtonPushed() {
-        //Load courses
-        ObservableList<Course> list = FXCollections.observableArrayList();
-        //All if admin
-        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
-            List<Course> courses;
-            try(EduDAO<Course> cDao = new JpaEduDAO<>()){
-                courses = cDao.getData(Course.class);
-            }
-            courses.forEach((course) -> {
-                list.add(course);
-            });
-        }
-        //Only the allowed ones if normal user
-        else{
-            Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
-            createdCourses.forEach((course) -> {
-                list.add(course);
-            });
-        }
-        downloadCourseList.setItems(list);
     }
 
     @FXML

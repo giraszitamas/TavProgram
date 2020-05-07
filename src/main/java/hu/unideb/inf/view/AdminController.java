@@ -227,6 +227,9 @@ public class AdminController extends LoginController implements Initializable {
     void deleteButtonPushed() {
         if (canEdit) {
             try (EduDAO<User> updateForEditing = new JpaEduDAO<User>()) {
+                if(underEditUser.getId() == (CurrentUser.getInstance().getCurrent().getId()))
+                    adminEditIsSuccessfull.setText("Önmagát nem törölheti!");
+                else
                 if(updateForEditing.delete(underEditUser))
                     adminEditIsSuccessfull.setText("Sikeres törlés!");
                 else adminEditIsSuccessfull.setText("Sikeretlen törlés!");

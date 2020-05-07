@@ -1,17 +1,3 @@
-.button {
-    -fx-font-weight: bold;
-}
-
-.rejt{
-    visibility: hidden;
-}
-
-.elo{
-    visibility: visible;
-}
-
-.kerek{
-    
-    -fx-border-radius: 10px 10px 0 0;
-  -fx-background-radius: 10px 10px 0 0;
+.tab-header-background {
+    -fx-background-color:  #004ca3;
 }

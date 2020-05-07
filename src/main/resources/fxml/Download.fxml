@@ -37,7 +37,6 @@
          </font>
       </Text>
       <ListView fx:id="downloadNoteList" layoutX="300.0" layoutY="152.0" prefHeight="340.0" prefWidth="200.0" />
-      <Button layoutX="119.0" layoutY="79.0" mnemonicParsing="false" onAction="#downloadCourseOpenButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Betöltés" />
       <Button layoutX="114.0" layoutY="501.0" mnemonicParsing="false" onAction="#downloadNoteOpenButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Megnyitás" />
       <Button layoutX="364.0" layoutY="501.0" mnemonicParsing="false" onAction="#downloadValueOpenButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Megnyitás" />
       <TextArea fx:id="downloadLink" layoutX="551.0" layoutY="152.0" prefHeight="136.0" prefWidth="200.0" styleClass="kerek" />

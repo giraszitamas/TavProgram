@@ -26,7 +26,25 @@ public class UploadController extends LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Load courses
-        uploadCourseOpenButtonPushed();
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        //All if admin
+        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
+            List<Course> courses;
+            try(EduDAO<Course> cDao = new JpaEduDAO<>()){
+                courses = cDao.getData(Course.class);
+            }
+            courses.forEach((course) -> {
+                list.add(course);
+            });
+        }
+        //Only the allowed ones if normal user
+        else{
+            Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
+            createdCourses.forEach((course) -> {
+                list.add(course);
+            });
+        }
+        uploadCourseList.setItems(list);
     }
 
     @FXML
@@ -59,30 +77,6 @@ public class UploadController extends LoginController implements Initializable {
     }
 
     @FXML
-    void uploadCourseOpenButtonPushed() {
-        //Load courses
-        ObservableList<Course> list = FXCollections.observableArrayList();
-        //All if admin
-        if(CurrentUser.getInstance().getCurrent().getType().toString().equals("ADMIN")){
-            List<Course> courses;
-            try(EduDAO<Course> cDao = new JpaEduDAO<>()){
-                courses = cDao.getData(Course.class);
-            }
-            courses.forEach((course) -> {
-                list.add(course);
-            });
-        }
-        //Only the allowed ones if normal user
-        else{
-            Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
-            createdCourses.forEach((course) -> {
-                list.add(course);
-            });
-        }
-        uploadCourseList.setItems(list);
-    }
-
-    @FXML
     void uploadExitButtonPushed() {
         saveChanges();
         handleExit(true);
@@ -109,7 +103,7 @@ public class UploadController extends LoginController implements Initializable {
                 cDAO.update(course);
             }
             //REEEEEEload courses
-            uploadCourseOpenButtonPushed();
+            //uploadCourseOpenButtonPushed();
         }
     }
     

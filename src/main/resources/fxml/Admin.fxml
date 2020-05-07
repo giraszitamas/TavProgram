@@ -26,9 +26,9 @@
             <Image url="@../icons/border.png" />
          </image>
       </ImageView>
-      <TabPane layoutX="27.0" layoutY="48.0" prefHeight="500.0" prefWidth="746.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="27.0" layoutY="48.0" prefHeight="500.0" prefWidth="746.0" stylesheets="@../styles/Styles.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Felvétel">
+          <Tab style="-fx-background-color: #429ed4;" text="Felvétel">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #a6f0ff;">
                      <children>
@@ -54,13 +54,13 @@
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó" GridPane.rowIndex="5" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fiók tipus" GridPane.rowIndex="6" />
                            
-                              <TextField fx:id="adminAddlastName" style="-fx-background-radius: 30;" GridPane.columnIndex="1" />
+                                          <TextField fx:id="adminAddlastName" style="-fx-background-radius: 30;" GridPane.columnIndex="1" />
                               <TextField fx:id="adminAddfirstName" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="adminAddbirthDate" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="adminAddemailAddress" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextField fx:id="adminAddusername" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            
-                           <RadioButton fx:id="adminAddisStudent" mnemonicParsing="false" text="Hallgató" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                       <RadioButton fx:id="adminAddisStudent" mnemonicParsing="false" text="Hallgató" GridPane.columnIndex="1" GridPane.rowIndex="6">
                               <GridPane.margin>
                                  <Insets top="25.0" />
                               </GridPane.margin>
@@ -79,7 +79,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Szerkesztés">
+            <Tab style="-fx-background-color: #429ed4;" text="Szerkesztés">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="746.0" style="-fx-background-color: #a6f0ff;">
                      <children>
@@ -139,9 +139,9 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="716.0" layoutY="47.0" mnemonicParsing="false" onAction="#adminAddExitButtonPushed" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
+      <Button layoutX="716.0" layoutY="49.0" mnemonicParsing="false" onAction="#adminAddExitButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
          <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/X.png" />
                </image>

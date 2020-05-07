@@ -32,7 +32,6 @@
          </font>
       </Text>
       <ListView fx:id="uploadCourseList" layoutX="50.0" layoutY="147.0" prefHeight="325.0" prefWidth="451.0" />
-      <Button layoutX="239.0" layoutY="489.0" mnemonicParsing="false" onAction="#uploadCourseOpenButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Megnyitás" />
       <Button layoutX="39.0" layoutY="39.0" mnemonicParsing="false" onAction="#simulationPushed" style="-fx-opacity: 0;" text="Szimulálás" />
       <TextArea fx:id="uploadLink" layoutX="553.0" layoutY="147.0" prefHeight="136.0" prefWidth="200.0" />
       <Text layoutX="597.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Letöltési link">

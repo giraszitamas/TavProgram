@@ -81,20 +81,7 @@ public class AddStudentController extends LoginController implements Initializab
         
     }
 
-    @FXML
-    void courseLoadPushed() {
-        ObservableList<Course> list = FXCollections.observableArrayList();
-        Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
-        createdCourses.forEach((course) -> {
-            list.add(course);
-        });
-        courses.setItems(list);
-    }
 
-    @FXML
-    void courseSelectPushed() {
-        //Can update the currently selecteced user
-    }
 
     @FXML
     void searchStudentPushed() {
