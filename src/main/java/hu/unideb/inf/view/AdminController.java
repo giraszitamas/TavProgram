@@ -87,33 +87,47 @@ public class AdminController extends LoginController implements Initializable {
 
     @FXML
     void addButtonPushed() {
-        User newUsr;
-        User.userType tipus = User.userType.TEACHER;
-        //Course targy = new Course("SzoftDev");
-        if (adminAddisStudent.isSelected()) {
-            tipus = User.userType.STUDENT;
-        } else if (adminAddisTeacher.isSelected()) {
-            tipus = User.userType.TEACHER;
-        } else if (adminAddisAdmin.isSelected()) {
-            tipus = User.userType.ADMIN;
-        }
+        boolean radioSelected = false;
+        if(adminAddisTeacher.isSelected())radioSelected = true;
+        else if(adminAddisAdmin.isSelected())radioSelected = true;
+        else if(adminAddisStudent.isSelected())radioSelected = true;
+        
+        if(!adminAddlastName.getText().isEmpty()
+                && !adminAddfirstName.getText().isEmpty()
+                && !adminAddbirthDate.getText().isEmpty()
+                && !adminAddusername.getText().isEmpty()
+                && !adminAddpassword.getText().isEmpty()
+                && radioSelected
+                ){
+            User newUsr;
+            User.userType tipus = User.userType.TEACHER;
+            //Course targy = new Course("SzoftDev");
+            if (adminAddisStudent.isSelected()) {
+                tipus = User.userType.STUDENT;
+            } else if (adminAddisTeacher.isSelected()) {
+                tipus = User.userType.TEACHER;
+            } else if (adminAddisAdmin.isSelected()) {
+                tipus = User.userType.ADMIN;
+            }
 
-        newUsr = new User(tipus,
-                adminAddusername.getText(),
-                adminAddfirstName.getText(),
-                adminAddlastName.getText(),
-                LocalDate.parse(adminAddbirthDate.getText()),
-                adminAddemailAddress.getText(),
-                adminAddpassword.getText()
-        );
+            newUsr = new User(tipus,
+                    adminAddusername.getText(),
+                    adminAddfirstName.getText(),
+                    adminAddlastName.getText(),
+                    LocalDate.parse(adminAddbirthDate.getText()),
+                    adminAddemailAddress.getText(),
+                    adminAddpassword.getText()
+            );
 
-        //newUsr.addCourse(targy);
-        try (EduDAO<User> uDAO = new JpaEduDAO<>()) {
-            if(uDAO.save(newUsr))
-                adminAddisSuccessfull.setText("Sikeresen hozzá lett adva!");
-            else adminAddisSuccessfull.setText("Sikertelen hozzáadás!");
-        }
-        System.out.println(newUsr.toString());
+            //newUsr.addCourse(targy);
+            try (EduDAO<User> uDAO = new JpaEduDAO<>()) {
+                if(uDAO.save(newUsr))
+                    adminAddisSuccessfull.setText("Sikeresen hozzá lett adva!");
+                else adminAddisSuccessfull.setText("Sikertelen hozzáadás!");
+            }
+            System.out.println(newUsr.toString());
+        }else adminAddisSuccessfull.setText("Tölts ki minden mezőt!");
+        
 
     }
 
@@ -201,24 +215,35 @@ public class AdminController extends LoginController implements Initializable {
     // Ne csak id alapján
     @FXML
     void updateButtonPushed() {
+        boolean radioSelected = false;
         if (canEdit) {
-            try (JpaEduDAO<User> updateForEditing = new JpaEduDAO<>()) {
-                final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-                underEditUser.setBirthDate(LocalDate.parse(adminEditBirthDate.getText()));
-                underEditUser.setFirstName(adminEditFirstName.getText());
-                underEditUser.setLastName(adminEditLastName.getText());
-                underEditUser.setEmail(adminEditEmailAddress.getText());
-                underEditUser.setUsername(adminEditUserName.getText());
-                underEditUser.setCode(adminEditPassword.getText());
-                if(adminEditisAdmin.isSelected())underEditUser.setType(User.userType.ADMIN);
-                else if(adminEditisTeacher.isSelected())underEditUser.setType(User.userType.TEACHER);
-                else if(adminEditisStudent.isSelected())underEditUser.setType(User.userType.STUDENT);
-                //Save the updated user
-                if(updateForEditing.update(underEditUser))
-                    adminEditIsSuccessful.setText("Sikeres szerkesztés!");
-                else adminEditIsSuccessful.setText("Sikeretlen szerkesztés!");
+            if(adminEditisAdmin.isSelected())radioSelected = true;
+            else if(adminEditisTeacher.isSelected())radioSelected = true;
+            else if(adminEditisStudent.isSelected())radioSelected = true;
+            if(!adminEditBirthDate.getText().isEmpty()
+            && !adminEditLastName.getText().isEmpty()
+            && !adminEditFirstName.getText().isEmpty()
+            && !adminEditUserName.getText().isEmpty()
+            && !adminEditEmailAddress.getText().isEmpty()
+            && !adminEditPassword.getText().isEmpty() && radioSelected){
+                try (JpaEduDAO<User> updateForEditing = new JpaEduDAO<>()) {
+                    final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+                    underEditUser.setBirthDate(LocalDate.parse(adminEditBirthDate.getText()));
+                    underEditUser.setFirstName(adminEditFirstName.getText());
+                    underEditUser.setLastName(adminEditLastName.getText());
+                    underEditUser.setEmail(adminEditEmailAddress.getText());
+                    underEditUser.setUsername(adminEditUserName.getText());
+                    underEditUser.setCode(adminEditPassword.getText());
+                    if(adminEditisAdmin.isSelected())underEditUser.setType(User.userType.ADMIN);
+                    else if(adminEditisTeacher.isSelected())underEditUser.setType(User.userType.TEACHER);
+                    else if(adminEditisStudent.isSelected())underEditUser.setType(User.userType.STUDENT);
+                    //Save the updated user
+                    if(updateForEditing.update(underEditUser))
+                        adminEditIsSuccessful.setText("Sikeres szerkesztés!");
+                    else adminEditIsSuccessful.setText("Sikeretlen szerkesztés!");
 
-            }
+                }
+            }else adminEditIsSuccessful.setText("Tölts ki minden mezőt!");
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR!");

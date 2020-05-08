@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -58,7 +59,8 @@ public class UploadController extends LoginController implements Initializable {
 
     @FXML
     private TextField uploadFileName;
-
+    @FXML
+    private Label backLog;
     @FXML
     void simulationPushed() {
         System.out.println("You clicked me!");
@@ -89,22 +91,25 @@ public class UploadController extends LoginController implements Initializable {
         String name = uploadFileName.getText();
         String value = uploadLink.getText();
         Course course = uploadCourseList.getSelectionModel().getSelectedItem();
-        //create new note
-        Note newNote = new Note(name, value);
-        course.addNote(newNote);
-        //Save this new note
-        try(EduDAO<Note> nDAO = new JpaEduDAO<>()){
-            nDAO.save(newNote);
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        if(user.getType().toString().equals("ADMIN")){
-            try(EduDAO<Course> cDAO = new JpaEduDAO<>()){
-                cDAO.update(course);
+        if(!name.isEmpty() && !value.isEmpty() && course!=null){
+            //create new note
+            Note newNote = new Note(name, value);
+            course.addNote(newNote);
+            //Save this new note
+            try(EduDAO<Note> nDAO = new JpaEduDAO<>()){
+                nDAO.save(newNote);
+            }catch(Exception e){
+                System.out.println(e);
             }
-            //REEEEEEload courses
-            //uploadCourseOpenButtonPushed();
-        }
+            if(user.getType().toString().equals("ADMIN")){
+                try(EduDAO<Course> cDAO = new JpaEduDAO<>()){
+                    if(cDAO.update(course))backLog.setText("Sikeresen jegyzet feltöltés!");
+                    else backLog.setText("Sikeretlen jegyzet feltöltés!");
+                }
+                //REEEEEEload courses
+                //uploadCourseOpenButtonPushed();
+            }
+        }else backLog.setText("Nem töltöttél ki minden mező/Nincs tárgy kiválasztva!");
     }
     
     void saveChanges(){
