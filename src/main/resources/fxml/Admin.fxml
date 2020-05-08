@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
@@ -132,7 +133,16 @@
                         <TextField fx:id="serachForEditing" layoutX="275.0" layoutY="26.0" style="-fx-background-radius: 30;" />
                         <Button layoutX="488.0" layoutY="25.0" mnemonicParsing="false" onAction="#getDataForEdit" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Lekér" />
                         <Button layoutX="561.0" layoutY="25.0" mnemonicParsing="false" onAction="#deleteButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Töröl" />
-                        <Text fx:id="adminEditIsSuccessfull" layoutX="160.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="490.7294921875" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab style="-fx-background-color: #429ed4;" text="Felhasználók">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="adminUsersList" layoutX="23.0" layoutY="26.0" prefHeight="400.0" prefWidth="700.0" />
+                        <Button layoutX="349.0" layoutY="426.0" mnemonicParsing="false" onAction="#adminUsersShowButtonPushed" text="Mutat" />
                      </children>
                   </AnchorPane>
               </content>
@@ -149,6 +159,7 @@
          </graphic>
       </Button>
       <Button fx:id="adminAddBackButton" layoutX="655.0" layoutY="49.0" mnemonicParsing="false" onAction="#adminAddBackButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Vissza" />
+      <Text fx:id="adminEditIsSuccessful" layoutX="174.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="490.7294921875" />
       
    </children>
 </AnchorPane>

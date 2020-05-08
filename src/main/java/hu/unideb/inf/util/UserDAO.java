@@ -17,6 +17,7 @@ public interface UserDAO extends AutoCloseable {
     public User getByUsername(String name);
     public User getById(long id);
     public List<User> getByPartUsername(String PartName);
+    public List<User> getEveryUser();
     
     @Override
     default public void close() {

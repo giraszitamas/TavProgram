@@ -55,4 +55,12 @@ public class JpaUserDAO implements UserDAO{
         Query query = session.createQuery(hql);
         return query.list();
     }
+
+    @Override
+    public List<User> getEveryUser() {
+        String hql = "FROM hu.unideb.inf.entity.User";
+        Query query = session.createQuery(hql);
+        return query.list();
+        
+    }
 }

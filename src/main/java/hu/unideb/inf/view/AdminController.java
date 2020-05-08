@@ -6,16 +6,20 @@ import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.util.EduDAO;
 import hu.unideb.inf.util.JpaEduDAO;
 import hu.unideb.inf.util.JpaUserDAO;
+import hu.unideb.inf.util.UserDAO;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -151,7 +155,10 @@ public class AdminController extends LoginController implements Initializable {
     private TextField serachForEditing;
     
     @FXML
-    private Text adminEditIsSuccessfull;
+    private Text adminEditIsSuccessful;
+    
+     @FXML
+    private ListView<User> adminUsersList;
 
     boolean canEdit = false;
     User underEditUser;
@@ -208,8 +215,8 @@ public class AdminController extends LoginController implements Initializable {
                 else if(adminEditisStudent.isSelected())underEditUser.setType(User.userType.STUDENT);
                 //Save the updated user
                 if(updateForEditing.update(underEditUser))
-                    adminEditIsSuccessfull.setText("Sikeres szerkesztés!");
-                else adminEditIsSuccessfull.setText("Sikeretlen szerkesztés!");
+                    adminEditIsSuccessful.setText("Sikeres szerkesztés!");
+                else adminEditIsSuccessful.setText("Sikeretlen szerkesztés!");
 
             }
         } else {
@@ -228,11 +235,11 @@ public class AdminController extends LoginController implements Initializable {
         if (canEdit) {
             try (EduDAO<User> updateForEditing = new JpaEduDAO<User>()) {
                 if(underEditUser.getId() == (CurrentUser.getInstance().getCurrent().getId()))
-                    adminEditIsSuccessfull.setText("Önmagát nem törölheti!");
+                    adminEditIsSuccessful.setText("Önmagát nem törölheti!");
                 else
                 if(updateForEditing.delete(underEditUser))
-                    adminEditIsSuccessfull.setText("Sikeres törlés!");
-                else adminEditIsSuccessfull.setText("Sikeretlen törlés!");
+                    adminEditIsSuccessful.setText("Sikeres törlés!");
+                else adminEditIsSuccessful.setText("Sikeretlen törlés!");
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -242,5 +249,21 @@ public class AdminController extends LoginController implements Initializable {
         }
     }
     // EDIT END
+    
+    //USERS START
+    
+    @FXML
+    void adminUsersShowButtonPushed() {
+        ObservableList<User> list = FXCollections.observableArrayList();
+            List<User> users;
+            try(UserDAO userDAO = new JpaUserDAO()){
+                users = userDAO.getEveryUser();
+            }
+            users.forEach((user) -> {
+                list.add(user);
+            });          
+            adminUsersList.setItems(list);
+    }
+    //USERS STOP
     //ADMIN END
 }
