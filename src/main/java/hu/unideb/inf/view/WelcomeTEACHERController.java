@@ -13,7 +13,7 @@ public class WelcomeTEACHERController extends LoginController implements Initial
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        welcomeTeacherText.setText("Üdv újra, " + CurrentUser.getInstance().getCurrent().getLastName().toString()+ "!");
+        welcomeTeacherText.setText("Üdv újra, " + CurrentUser.getInstance().getCurrent().getFirstName().toString()+ "!");
     }
 
     //WELCOME TEACHER START

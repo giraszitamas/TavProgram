@@ -36,7 +36,7 @@
          </font>
       </Text>
       <ListView fx:id="foundCourse" layoutX="50.0" layoutY="147.0" prefHeight="325.0" prefWidth="451.0" />
-      <Button layoutX="623.0" layoutY="311.0" mnemonicParsing="false" onAction="#addCoursePushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Felvétel" />
+      <Button layoutX="623.0" layoutY="297.0" mnemonicParsing="false" onAction="#addCoursePushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Felvétel" />
       <Text layoutX="619.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keresés">
          <font>
             <Font size="20.0" />
@@ -50,8 +50,8 @@
       <TextField fx:id="courseName" layoutX="551.0" layoutY="169.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 30;" />
       <Button fx:id="courseLogInBackButton" layoutX="586.0" layoutY="492.0" mnemonicParsing="false" onAction="#courseLogInBackButtonPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Vissza" />
       <Button layoutX="623.0" layoutY="206.0" mnemonicParsing="false" onAction="#searchCoursePushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Keresés" />
-      <TextField fx:id="courseCode" layoutX="551.0" layoutY="267.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 30;" />
-      <Text layoutX="553.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó:">
+      <TextField fx:id="courseCode" layoutX="551.0" layoutY="253.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 30;" />
+      <Text layoutX="553.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó:">
          <font>
             <Font size="14.0" />
          </font>

@@ -155,7 +155,7 @@ public class AdminController extends LoginController implements Initializable {
     private TextField serachForEditing;
     
     @FXML
-    private Text adminEditIsSuccessful;
+    private Label adminEditIsSuccessful;
     
      @FXML
     private ListView<User> adminUsersList;

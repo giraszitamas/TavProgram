@@ -13,7 +13,7 @@ public class WelcomeADMINController extends LoginController implements Initializ
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        welcomeAdminText.setText("Üdv újra, " + CurrentUser.getInstance().getCurrent().getLastName().toString()+ "!");
+        welcomeAdminText.setText("Üdv újra, " + CurrentUser.getInstance().getCurrent().getFirstName().toString()+ "!");
     }
     
     

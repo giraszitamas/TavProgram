@@ -26,14 +26,6 @@ public class AddStudentController extends LoginController implements Initializab
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        assert courses != null : "fx:id=\"courses\" was not injected: check your FXML file 'AddStudent.fxml'.";
-        assert foundStudents != null : "fx:id=\"foundStudents\" was not injected: check your FXML file 'AddStudent.fxml'.";
-        assert searchUsername != null : "fx:id=\"searchUsername\" was not injected: check your FXML file 'AddStudent.fxml'.";
-        assert searchFirstName != null : "fx:id=\"searchFirstName\" was not injected: check your FXML file 'AddStudent.fxml'.";
-        assert searchLastName != null : "fx:id=\"searchLastName\" was not injected: check your FXML file 'AddStudent.fxml'.";
-        assert teacherBackButton != null : "fx:id=\"teacherBackButton\" was not injected: check your FXML file 'AddStudent.fxml'.";
-        assert searchEmail != null : "fx:id=\"searchEmail\" was not injected: check your FXML file 'AddStudent.fxml'.";
-        
         //Load courses
         ObservableList<Course> list = FXCollections.observableArrayList();
         Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
@@ -49,23 +41,11 @@ public class AddStudentController extends LoginController implements Initializab
     @FXML
     private ListView<User> foundStudents;
 
-    @FXML
-    private TextField searchUsername;
-
-    @FXML
-    private TextField searchFirstName;
-
-    @FXML
-    private TextField searchLastName;
 
     @FXML
     private Button teacherBackButton;
 
-    @FXML
-    private TextField searchEmail;
     
-    @FXML
-    private TextField searchId;
 
 
     @FXML
