@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -33,38 +32,9 @@
          </font>
       </Text>
       <ListView fx:id="foundStudents" layoutX="300.0" layoutY="152.0" prefHeight="340.0" prefWidth="200.0" />
-      <Button layoutX="624.0" layoutY="413.0" mnemonicParsing="false" onAction="#addStudentPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Felvétel" />
-      <Text layoutX="619.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keresés">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="554.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználónév">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <TextField fx:id="searchUsername" layoutX="551.0" layoutY="168.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 30;" />
-      <Text layoutX="554.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <TextField fx:id="searchFirstName" layoutX="552.0" layoutY="215.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 30;" />
-      <Text layoutX="554.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Családnév">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <TextField fx:id="searchLastName" layoutX="551.0" layoutY="261.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 30;" />
+      <Button layoutX="588.0" layoutY="259.0" mnemonicParsing="false" onAction="#addStudentPushed" prefHeight="126.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Felvétel" />
       <Button fx:id="teacherBackButton" layoutX="588.0" layoutY="492.0" mnemonicParsing="false" onAction="#teacherBackButtonPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Vissza" />
-      <Text layoutX="552.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail cím">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <TextField fx:id="searchEmail" layoutX="552.0" layoutY="307.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 30;" />
-      <Button layoutX="624.0" layoutY="345.0" mnemonicParsing="false" onAction="#searchStudentPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Keresés" />
+      <Button layoutX="608.0" layoutY="164.0" mnemonicParsing="false" onAction="#searchStudentPushed" prefHeight="55.0" prefWidth="90.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Listázás" />
       <Button layoutX="716.0" layoutY="42.0" mnemonicParsing="false" onAction="#teacherExitButtonPushed" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">

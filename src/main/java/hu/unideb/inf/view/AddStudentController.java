@@ -2,12 +2,14 @@ package hu.unideb.inf.view;
 
 import hu.unideb.inf.entity.Course;
 import hu.unideb.inf.entity.User;
+import hu.unideb.inf.entity.User.userType;
 import hu.unideb.inf.modell.CurrentUser;
 import hu.unideb.inf.util.EduDAO;
 import hu.unideb.inf.util.JpaEduDAO;
 import hu.unideb.inf.util.JpaUserDAO;
 import hu.unideb.inf.util.UserDAO;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -61,6 +63,10 @@ public class AddStudentController extends LoginController implements Initializab
 
     @FXML
     private TextField searchEmail;
+    
+    @FXML
+    private TextField searchId;
+
 
     @FXML
     void addStudentPushed() {
@@ -85,15 +91,18 @@ public class AddStudentController extends LoginController implements Initializab
 
     @FXML
     void searchStudentPushed() {
-        ObservableList<User> list = FXCollections.observableArrayList();
-        //get the username
-        String username = searchUsername.getText();
-        //search the user and add it to the list
-        try (UserDAO userDAO = new JpaUserDAO()) {
-            User user = userDAO.getByUsername(username);
-            list.add(user);
-            foundStudents.setItems(list);
-        }
+        //Load students
+        ObservableList<User> students = FXCollections.observableArrayList();
+            List<User> users;
+            try(UserDAO userDAO = new JpaUserDAO()){
+                users = userDAO.getEveryUser();
+            }
+            users.forEach((user) -> {
+                if(user.getType().equals(userType.STUDENT)){
+                students.add(user);
+                }
+            });          
+            foundStudents.setItems(students);
     }
 
     @FXML
