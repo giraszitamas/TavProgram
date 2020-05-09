@@ -209,10 +209,9 @@ public class AdminController extends LoginController implements Initializable {
                 System.out.println(tar1.toString());
             }*/
         }
-        
     }
+    
 //userType type, String username, String FirstName, String LastName, LocalDate birthDate, String email, String code
-    // Ne csak id alapján
     @FXML
     void updateButtonPushed() {
         boolean radioSelected = false;
@@ -252,9 +251,7 @@ public class AdminController extends LoginController implements Initializable {
         }
 
     }
-    //
-    //
-    //ALma
+    //Töröl
     @FXML
     void deleteButtonPushed() {
         if (canEdit) {
@@ -276,18 +273,34 @@ public class AdminController extends LoginController implements Initializable {
     // EDIT END
     
     //USERS START
+    @FXML
+    private TextField searchUser;
+    
+    @FXML
+    void adminUserSearchButtonPushed() {
+        ObservableList<User> list = FXCollections.observableArrayList();
+        String partName = searchUser.getText();
+        List<User> FoundUsers;
+        try (JpaUserDAO search = new JpaUserDAO()) {
+            FoundUsers = search.getByPartUsername(partName);
+        }
+        FoundUsers.forEach((user) -> {
+            list.add(user);
+        });
+        adminUsersList.setItems(list);
+    }
     
     @FXML
     void adminUsersShowButtonPushed() {
         ObservableList<User> list = FXCollections.observableArrayList();
-            List<User> users;
-            try(UserDAO userDAO = new JpaUserDAO()){
-                users = userDAO.getEveryUser();
-            }
-            users.forEach((user) -> {
-                list.add(user);
-            });          
-            adminUsersList.setItems(list);
+        List<User> users;
+        try(UserDAO userDAO = new JpaUserDAO()){
+            users = userDAO.getEveryUser();
+        }
+        users.forEach((user) -> {
+            list.add(user);
+        });          
+        adminUsersList.setItems(list);
     }
     //USERS STOP
     //ADMIN END
