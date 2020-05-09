@@ -166,7 +166,7 @@ public class AdminController extends LoginController implements Initializable {
     private RadioButton adminEditisAdmin;
 
     @FXML
-    private TextField serachForEditing;
+    private TextField searchForEditing;
     
     @FXML
     private Label adminEditIsSuccessful;
@@ -179,13 +179,12 @@ public class AdminController extends LoginController implements Initializable {
     @FXML
     void getDataForEdit() {
         canEdit = true;
-        String idForGetting = serachForEditing.getText();
-        System.out.println("Alma");
+        String idForGetting = searchForEditing.getText();
         if(!idForGetting.isEmpty()){
             try (JpaUserDAO getterForEdit = new JpaUserDAO()) {
                 adminEditIsSuccessful.setText("");
                 underEditUser = getterForEdit.getById(Long.parseLong(idForGetting));
-                System.out.println("Alma");
+                //System.out.println("Alma"); //For Debug
                 if(underEditUser!=null){
                     adminEditIsSuccessful.setText("");
                     adminEditLastName.setText(underEditUser.getLastName());
