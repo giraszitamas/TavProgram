@@ -180,36 +180,43 @@ public class AdminController extends LoginController implements Initializable {
     void getDataForEdit() {
         canEdit = true;
         String idForGetting = serachForEditing.getText();
-        try (JpaUserDAO getterForEdit = new JpaUserDAO()) {
-            underEditUser = getterForEdit.getById(Long.parseLong(idForGetting));
-            adminEditLastName.setText(underEditUser.getLastName());
-            adminEditFirstName.setText(underEditUser.getFirstName());
-            adminEditBirthDate.setText(String.valueOf(underEditUser.getBirthDate()));
-            adminEditEmailAddress.setText(underEditUser.getEmail());
-            adminEditUserName.setText(underEditUser.getUsername());
-            adminEditPassword.setText(underEditUser.getCode());
+        System.out.println("Alma");
+        if(!idForGetting.isEmpty()){
+            try (JpaUserDAO getterForEdit = new JpaUserDAO()) {
+                adminEditIsSuccessful.setText("");
+                underEditUser = getterForEdit.getById(Long.parseLong(idForGetting));
+                System.out.println("Alma");
+                if(underEditUser!=null){
+                    adminEditIsSuccessful.setText("");
+                    adminEditLastName.setText(underEditUser.getLastName());
+                    adminEditFirstName.setText(underEditUser.getFirstName());
+                    adminEditBirthDate.setText(String.valueOf(underEditUser.getBirthDate()));
+                    adminEditEmailAddress.setText(underEditUser.getEmail());
+                    adminEditUserName.setText(underEditUser.getUsername());
+                    adminEditPassword.setText(underEditUser.getCode());
 
-            userType typeOfUser = underEditUser.getType();
+                    userType typeOfUser = underEditUser.getType();
 
-            if (null != typeOfUser) switch (typeOfUser) {
-                case ADMIN:
-                    adminEditisAdmin.setSelected(true);
-                    break;
-                case TEACHER:
-                    adminEditisTeacher.setSelected(true);
-                    break;
-                case STUDENT:
-                    adminEditisStudent.setSelected(true);
-                    break;
-                default:
-                    break;
+                    if (null != typeOfUser) switch (typeOfUser) {
+                        case ADMIN:
+                            adminEditisAdmin.setSelected(true);
+                            break;
+                        case TEACHER:
+                            adminEditisTeacher.setSelected(true);
+                            break;
+                        case STUDENT:
+                            adminEditisStudent.setSelected(true);
+                            break;
+                        default:
+                            break;
+                    }
+                }else adminEditIsSuccessful.setText("Hiba a kapcsolatban");
+                /*List<User> tar = getterForEdit.getByPartUsername("ma");
+                for (User tar1 : tar) {
+                    System.out.println(tar1.toString());
+                }*/
             }
-            /*List<User> tar = getterForEdit.getByPartUsername("ma");
-            for (User tar1 : tar) {
-                System.out.println(tar1.toString());
-            }*/
-        }
-        
+        }else adminEditIsSuccessful.setText("Nincs felasználó kiválasztva!");
     }
 //userType type, String username, String FirstName, String LastName, LocalDate birthDate, String email, String code
     // Ne csak id alapján
