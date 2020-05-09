@@ -49,27 +49,19 @@ public class LoginController implements Initializable {
         String username = loginUsername.getText();
         String password = loginPassword.getText();
         CurrentUser currentInstance = CurrentUser.logIn(username);
-        if(currentInstance != null){
-            User user = currentInstance.getCurrent();
-            if(user != null && password.equals(user.getCode())){
-                userMode = user.getType().toString();
-                windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
-                Stage stage = (Stage) loginLoginButton.getScene().getWindow();
-                stage.close();
-            }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Nem megfelelő belépési adatok");
-                alert.setHeaderText("Rossz jelszó, vagy a felhasználó nem található!");
-                alert.showAndWait();
-                System.out.println("Bejelentkezési hiba!");
-            }
+        User user = currentInstance.getCurrent();
+        if(user != null && password.equals(user.getCode())){
+            userMode = user.getType().toString();
+            windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
+            Stage stage = (Stage) loginLoginButton.getScene().getWindow();
+            stage.close();
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Szerver hiba");
-            alert.setHeaderText("Probléma a szerverre való kapcsolódás közben. A szerver vagy nem létezik, vagy nem érhető el. Kérem próbálja meg később!");
+            alert.setTitle("Nem megfelelő belépési adatok");
+            alert.setHeaderText("Rossz jelszó, a felhasználó nem található, vagy nem lehet csatlakozni a szerverhez!");
             alert.showAndWait();
-            System.out.println("Szerver nem található!");
-        }
+            System.out.println("Bejelentkezési hiba!");
+         }
     }
     //LOGIN END
     
