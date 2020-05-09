@@ -8,4 +8,4 @@ Beadandó projekt Szoftverfejlesztés mérnököknek tárgyra.
  - Kezelőfelület felhasználóknak (Váz kész, design kell)
  - Kezelőfelület adminoknak (SOON TM)
  - Felhasználók hozzáadása (Szimulálva)
- - Egyebek (SOON TM)
+ - Egyebek (SOON TM) 
