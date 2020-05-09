@@ -175,6 +175,7 @@ public class User implements Serializable {
         sb.append(type.toString()).append("-");
         sb.append(FirstName).append(" ");
         sb.append(LastName).append("-");
+        sb.append(username).append("-");
         sb.append(email);
         return sb.toString();
     }
@@ -191,7 +192,7 @@ public class User implements Serializable {
         sb.append("code=").append(code);
         return sb.toString();
     }
-
+    
     //ID hashcode
     @Override
     public int hashCode() {
