@@ -48,18 +48,27 @@ public class LoginController implements Initializable {
     void loginLoginButtonPushed() {
         String username = loginUsername.getText();
         String password = loginPassword.getText();
-        User user = CurrentUser.logIn(username).getCurrent();
-        if(user != null && password.equals(user.getCode())){
+        CurrentUser currentInstance = CurrentUser.logIn(username);
+        if(currentInstance != null){
+            User user = currentInstance.getCurrent();
+            if(user != null && password.equals(user.getCode())){
                 userMode = user.getType().toString();
                 windowLoader("/fxml/Welcome"+userMode+".fxml", "Welcome"+userMode);
                 Stage stage = (Stage) loginLoginButton.getScene().getWindow();
                 stage.close();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Nem megfelelő belépési adatok");
+                alert.setHeaderText("Rossz jelszó, vagy a felhasználó nem található!");
+                alert.showAndWait();
+                System.out.println("Bejelentkezési hiba!");
+            }
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Incorrect credentials");
-            alert.setHeaderText("Incorrect username or password");
+            alert.setTitle("Szerver hiba");
+            alert.setHeaderText("Probléma a szerverre való kapcsolódás közben. A szerver vagy nem létezik, vagy nem érhető el. Kérem próbálja meg később!");
             alert.showAndWait();
-            System.out.println("User not found or wrong password!");
+            System.out.println("Szerver nem található!");
         }
     }
     //LOGIN END
@@ -80,8 +89,8 @@ public class LoginController implements Initializable {
     protected void handleExit(boolean stop, WindowEvent e){
         if(!stop){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Cannot close the program!");
-            alert.setHeaderText("Please use the application's own exit button to close it.");
+            alert.setTitle("A program nem zárható be!");
+            alert.setHeaderText("Kérlek használd a program saját bezárási gombját a kilépéshez!");
             alert.showAndWait();
             e.consume();
         }

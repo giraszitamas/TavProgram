@@ -253,7 +253,7 @@ public class AdminController extends LoginController implements Initializable {
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR!");
-            alert.setHeaderText("There is no id given or you do not get data before!");
+            alert.setHeaderText("Nincs id megadva, vagy még nem kértél le adatokat!");
             alert.showAndWait();
         }
 
@@ -273,7 +273,7 @@ public class AdminController extends LoginController implements Initializable {
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR!");
-            alert.setHeaderText("There is no id given or you do not get data before!");
+            alert.setHeaderText("Nincs id megadva, vagy még nem kértél le adatokat!");
             alert.showAndWait();
         }
     }

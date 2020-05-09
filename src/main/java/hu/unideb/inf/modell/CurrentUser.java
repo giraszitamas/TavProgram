@@ -47,17 +47,22 @@ public class CurrentUser {
     //Get the instance with a new user by username
     public static synchronized CurrentUser logIn(String username) {
         if (instance == null) {
+            System.out.println(" -- WasNull -- ");
             instance = new CurrentUser(username);
         }else{
-            instance.getAndSetNew(username);
+            if(!instance.getAndSetNew(username)){
+                instance = null;
+            }
         }
+        System.out.println(instance.toString());
         return instance;
     }
     
     private CurrentUser(String username) {
-        boolean found = this.getAndSetNew(username);
-        if(!found){
-            current = null;
+        boolean valid = this.getAndSetNew(username);
+        if(!valid){
+            instance = null;
+            System.out.println(" -- IsNull -- ");
         }
     }
     
@@ -74,17 +79,23 @@ public class CurrentUser {
         this.current = current;
     }
     
-    public boolean getAndSetNew(String username) {
-        boolean found = false;
-        try (UserDAO userDAO = new JpaUserDAO()) {
+    private boolean getAndSetNew(String username) {
+        boolean valid;
+        try {
+            System.out.println(" -- DataGetStart -- ");
+            UserDAO userDAO = new JpaUserDAO();
             User user = userDAO.getByUsername(username);
+            System.out.println(" -- Connection -- ");
             if(user != null){
                 current = user;
-                found = true;
-            }else{
-                found = false;
             }
+            userDAO.close();
+            System.out.println(" -- Valid -- ");
+            valid = true;
+        }catch (Exception e){ 
+            System.out.println(" -- Not Valid -- ");
+            valid = false;
         }
-        return found;
+        return valid;
     }
 }
