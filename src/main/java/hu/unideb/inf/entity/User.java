@@ -192,7 +192,7 @@ public class User implements Serializable {
         sb.append("code=").append(code);
         return sb.toString();
     }
-
+    
     //ID hashcode
     @Override
     public int hashCode() {
