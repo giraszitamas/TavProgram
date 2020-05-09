@@ -133,10 +133,10 @@
                         </GridPane>
                         <Button layoutX="349.0" layoutY="429.0" mnemonicParsing="false" onAction="#updateButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Frissít" />
                         <Text layoutX="77.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Szerkeszteni kívánt felhasználó azonosítója" wrappingWidth="239.166015625" />
-                        <Button layoutX="540.0" layoutY="25.0" mnemonicParsing="false" onAction="#getDataForEdit" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Lekér" />
+                        <Button layoutX="562.0" layoutY="25.0" mnemonicParsing="false" onAction="#getDataForEdit" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Lekér" />
                         <Button layoutX="622.0" layoutY="25.0" mnemonicParsing="false" onAction="#deleteButtonPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Töröl" />
                         <Label fx:id="adminEditIsSuccessful" layoutX="14.0" layoutY="433.0" prefHeight="18.0" prefWidth="326.0" />
-                        <TextField fx:id="searchForEditing" layoutX="373.0" layoutY="26.0" style="-fx-background-radius: 30;" />
+                        <TextField fx:id="searchForEditing" layoutX="401.0" layoutY="26.0" style="-fx-background-radius: 30;" />
                      </children>
                   </AnchorPane>
               </content>
