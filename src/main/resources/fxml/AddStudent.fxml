@@ -28,15 +28,15 @@
          </font>
       </Text>
       <ListView fx:id="courses" layoutX="50.0" layoutY="152.0" prefHeight="340.0" prefWidth="200.0" />
-      <Text layoutX="302.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válaszon egy tanulót!">
+      <Text layoutX="302.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válaszon egy tanulót!" AnchorPane.topAnchor="112.4">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
       <ListView fx:id="foundStudents" layoutX="300.0" layoutY="152.0" prefHeight="340.0" prefWidth="200.0" />
-      <Button layoutX="588.0" layoutY="448.0" mnemonicParsing="false" onAction="#addStudentPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Felvétel" />
-      <Button fx:id="teacherBackButton" layoutX="588.0" layoutY="514.0" mnemonicParsing="false" onAction="#teacherBackButtonPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Vissza" />
-      <Button layoutX="588.0" layoutY="336.0" mnemonicParsing="false" onAction="#searchStudentPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Listázás" />
+      <Button layoutX="588.0" layoutY="322.0" mnemonicParsing="false" onAction="#addStudentPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Felvétel" />
+      <Button fx:id="teacherBackButton" layoutX="588.0" layoutY="492.0" mnemonicParsing="false" onAction="#teacherBackButtonPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Vissza" />
+      <Button layoutX="588.0" layoutY="256.0" mnemonicParsing="false" onAction="#searchStudentPushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Listázás" />
       <Button layoutX="716.0" layoutY="42.0" mnemonicParsing="false" onAction="#teacherExitButtonPushed" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -46,9 +46,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField fx:id="getUsernameForAddStudent" layoutX="579.0" layoutY="231.0" style="-fx-background-radius: 30px;" />
-      <Button layoutX="588.0" layoutY="271.0" mnemonicParsing="false" onAction="#searchStudentByPartUernamePushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Keresés" />
-      <Label layoutX="586.0" layoutY="115.0" text="Felhasználónév">
+      <TextField fx:id="getUsernameForAddStudent" layoutX="579.0" layoutY="152.0" style="-fx-background-radius: 30px;" />
+      <Button layoutX="588.0" layoutY="193.0" mnemonicParsing="false" onAction="#searchStudentByPartUernamePushed" prefHeight="44.0" prefWidth="130.0" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Keresés" />
+      <Label layoutX="588.0" layoutY="112.0" text="Felhasználónév" AnchorPane.topAnchor="112.4">
          <font>
             <Font size="20.0" />
          </font></Label>

@@ -46,8 +46,8 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="uploadFileName" layoutX="551.0" layoutY="340.0" prefHeight="25.0" prefWidth="200.0" />
-      <Button layoutX="620.0" layoutY="383.0" mnemonicParsing="false" onAction="#uploadUploadButton" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Feltöltés" />
+      <TextField fx:id="uploadFileName" layoutX="551.0" layoutY="340.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 30;" />
+      <Button layoutX="619.0" layoutY="378.0" mnemonicParsing="false" onAction="#uploadUploadButton" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Feltöltés" />
       <Text layoutX="329.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feltöltés">
          <font>
             <Font size="41.0" />

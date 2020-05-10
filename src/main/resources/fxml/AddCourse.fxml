@@ -28,7 +28,7 @@
       </Text>
       <ListView fx:id="courseList" layoutX="50.0" layoutY="147.0" prefHeight="325.0" prefWidth="451.0" />
       <Button layoutX="239.0" layoutY="489.0" mnemonicParsing="false" onAction="#courseLoadPushed" style="-fx-background-color: #429ed4; -fx-border-color: #004ca3; -fx-background-radius: 30; -fx-border-radius: 30;" text="Betöltés" />
-      <Text layoutX="603.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Az új tárgy:">
+      <Text layoutX="603.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Az új tárgy:">
          <font>
             <Font size="20.0" />
          </font>
@@ -56,6 +56,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Text fx:id="addNewCourseBacklog" layoutX="546.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="212.53662109375" />
+      <Text fx:id="addNewCourseBacklog" layoutX="546.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="212.53662109375" />
    </children>
 </AnchorPane>
