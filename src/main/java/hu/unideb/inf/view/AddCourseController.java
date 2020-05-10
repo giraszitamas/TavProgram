@@ -15,14 +15,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class AddCourseController extends LoginController implements Initializable {
-    
+
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       //Load courses
+        //Load courses
         ObservableList<Course> list = FXCollections.observableArrayList();
         Set<Course> createdCourses = CurrentUser.getInstance().getCurrent().getCourses();
         createdCourses.forEach((course) -> {
@@ -30,7 +31,7 @@ public class AddCourseController extends LoginController implements Initializabl
         });
         courseList.setItems(list);
     }
-    
+
     @FXML
     private ListView<Course> courseList;
 
@@ -42,6 +43,8 @@ public class AddCourseController extends LoginController implements Initializabl
 
     @FXML
     private Button addCourseBackButton;
+    @FXML
+    private Text addNewCourseBacklog;
 
     @FXML
     void courseLoadPushed() {
@@ -59,28 +62,32 @@ public class AddCourseController extends LoginController implements Initializabl
         //Create new course
         String name = newCourseName.getText();
         String code = newCourseCode.getText();
-        User user = CurrentUser.getInstance().getCurrent();
-        Course newCourse = new Course(name, code,user.getId());
-        //Save the new course
-        user.addCourse(newCourse);
-        newCourse.addUser(user);
-        try(EduDAO<Course> cDAO = new JpaEduDAO<>()){
-            cDAO.save(newCourse);
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        //Update the user as the main teacher
-        try(EduDAO<User> uDAO = new JpaEduDAO<>()){
-            uDAO.update(user);
-        }catch(Exception e){
-            System.out.println(e);
-        }
+
+        if (!name.isEmpty() && !code.isEmpty()) {
+            User user = CurrentUser.getInstance().getCurrent();
+            Course newCourse = new Course(name, code, user.getId());
+            //Save the new course
+            user.addCourse(newCourse);
+            newCourse.addUser(user);
+            try ( EduDAO<Course> cDAO = new JpaEduDAO<>()) {
+                cDAO.save(newCourse);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            //Update the user as the main teacher
+            try ( EduDAO<User> uDAO = new JpaEduDAO<>()) {
+                if(uDAO.update(user))addNewCourseBacklog.setText("Tárgy hozzáaadása sikeres!");
+                else addNewCourseBacklog.setText("Nem sikerült az adatbázishoz kapcsolódni!");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }else addNewCourseBacklog.setText("Nem töltöttél ki minden mezőt!");
     }
-    
+
     @FXML
     void addCourseBackButtonPushed() {
         userMode = CurrentUser.getInstance().getCurrent().getType().toString();
-        windowLoader("/fxml/Welcome"+userMode+".fxml","Welcome"+userMode);
+        windowLoader("/fxml/Welcome" + userMode + ".fxml", "Welcome" + userMode);
         Stage stage = (Stage) addCourseBackButton.getScene().getWindow();
         stage.close();
     }
