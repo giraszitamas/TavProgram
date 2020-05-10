@@ -76,10 +76,11 @@ public class AddCourseController extends LoginController implements Initializabl
             }
             //Update the user as the main teacher
             try ( EduDAO<User> uDAO = new JpaEduDAO<>()) {
-                if(uDAO.update(user))addNewCourseBacklog.setText("Tárgy hozzáaadása sikeres!");
-                else addNewCourseBacklog.setText("Nem sikerült az adatbázishoz kapcsolódni!");
+                uDAO.update(user);
+                addNewCourseBacklog.setText("Tárgy hozzáaadása sikeres!");
             } catch (Exception e) {
                 System.out.println(e);
+                addNewCourseBacklog.setText("Nem sikerült kapcsolódni az adatbázishoz!");
             }
         }else addNewCourseBacklog.setText("Nem töltöttél ki minden mezőt!");
     }

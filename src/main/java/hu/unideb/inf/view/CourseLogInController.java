@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CourseLogInController extends LoginController implements Initializable {
@@ -47,23 +48,28 @@ public class CourseLogInController extends LoginController implements Initializa
 
     @FXML
     private TextField courseCode;
-    
+    @FXML
+    private Text courseLogInBacklog;
     @FXML
     void addCoursePushed() {
         var code = courseCode.getText();
         var course = foundCourse.getSelectionModel().getSelectedItem();
         var theChosenOne = CurrentUser.getInstance().getCurrent();
-        if(code.equals(course.getCode())){
-            theChosenOne.addCourse(course);
-            try(EduDAO<User> uDao = new JpaEduDAO<>()){
-                uDao.update(theChosenOne);
+        if(!code.isEmpty() &&course != null){
+            courseLogInBacklog.setText("");
+            if(code.equals(course.getCode())){
+                theChosenOne.addCourse(course);
+                try(EduDAO<User> uDao = new JpaEduDAO<>()){
+                    if(uDao.update(theChosenOne))courseLogInBacklog.setText("Sikeresen felvetted a tárgyat!");
+                    else courseLogInBacklog.setText("Sikeretlen tárgyfelvétel!");
+                }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Incorrect credentials");
+                alert.setHeaderText("Incorrect password!");
+                alert.showAndWait();
             }
-        }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Incorrect credentials");
-            alert.setHeaderText("Incorrect password!");
-            alert.showAndWait();
-        }
+        }else courseLogInBacklog.setText("Nincs tárgy kiválasztva/Nincs jelszó megadva!");
     }
 
     @FXML

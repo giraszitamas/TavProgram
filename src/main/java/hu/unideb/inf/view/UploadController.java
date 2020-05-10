@@ -97,7 +97,8 @@ public class UploadController extends LoginController implements Initializable {
             course.addNote(newNote);
             //Save this new note
             try(EduDAO<Note> nDAO = new JpaEduDAO<>()){
-                nDAO.save(newNote);
+                if(nDAO.save(newNote))backLog.setText("Sikeresen jegyzet feltöltés!");
+                else backLog.setText("Sikeretlen jegyzet feltöltés!");
             }catch(Exception e){
                 System.out.println(e);
             }
