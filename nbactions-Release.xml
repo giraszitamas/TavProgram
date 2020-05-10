@@ -9,9 +9,11 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:java</goal>
             </goals>
             <properties>
-                <runfx.args>-jar "${project.build.directory}/${project.build.finalName}.jar"</runfx.args>
+                <exec.args>-classpath %classpath hu.unideb.inf.main.NewMain</exec.args>
+                <exec.executable>java</exec.executable>
             </properties>
         </action>
+        
         <action>
             <actionName>debug</actionName>
             <goals>
