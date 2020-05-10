@@ -27,7 +27,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Text layoutX="155.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válaszon egy tárgyat!">
+      <Text layoutX="155.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válasszon egy tárgyat!">
          <font>
             <Font size="20.0" />
          </font>
